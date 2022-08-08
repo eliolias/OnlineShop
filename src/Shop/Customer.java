@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Customer extends Human{
     private ArrayList<Product> wishList;
     public Customer(String name, boolean isEmployee) {
-        super(name, isEmployee);
-
+        super(name, true);
     }
 
     public Customer() {
