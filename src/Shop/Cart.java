@@ -56,6 +56,7 @@ public class Cart {
         if(payment.getType() == "Cash"){
             this.cashDiscount(true);
         }
+        payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
     }
     public void addWishListToCart(ArrayList<Product> wishlist){
@@ -88,10 +89,33 @@ public class Cart {
             }
         System.out.println("Added items from wishlist to cart: " + addedToCart);
         }
-    public void applyCoupon(){
-        //need to implement
+    //Not currently working properly
+/*    public double applyCoupon(Coupon coupon){
+        System.out.println(coupon.isPercent());
+        if(coupon.isPercent()){
+            double discount = totalPrice * coupon.getAmount();
+
+            totalPrice -= discount;
+            System.out.println("in if statement Coupon discount: " + discount + "$");
+        } else {
+            totalPrice -= coupon.getAmount();
+            System.out.println("in else statementCoupon discount: " + coupon.getAmount() + "$");
+        }
+        return totalPrice;
+    }*/
+    //Not working correctly
+    public void applyCoupon(boolean isPercent){
+        System.out.println(isPercent);
+        if(isPercent){
+            System.out.println("1 if" + isPercent);
+        }
+        else if(!isPercent){
+            System.out.println("2 else" + isPercent);
+        }
+
 
     }
+
 
     public double applyEmployeeDiscount(boolean isEmployee){
         if(isEmployee){
