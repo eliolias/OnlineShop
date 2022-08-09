@@ -48,10 +48,13 @@ public class Cart {
         cartProducts.remove(product);
     }
 
-    public ArrayList<String> makePurchase(){
+    public ArrayList<String> makePurchase(Payment payment){
         ArrayList<String> productsPurchased = new ArrayList<String>();
         for(Product product: cartProducts){
             productsPurchased.add(product.getName()  + "-" + product.getPrice() + "$");
+        }
+        if(payment.getType() == "Cash"){
+            this.cashDiscount(true);
         }
         return productsPurchased;
     }
@@ -87,12 +90,28 @@ public class Cart {
         }
     public void applyCoupon(){
         //need to implement
+
     }
 
-    public void applyEmployeeDiscount(){
-        //need to implement
+    public double applyEmployeeDiscount(boolean isEmployee){
+        if(isEmployee){
+            double discount = totalPrice * 0.20;
+            totalPrice -= discount;
+            System.out.println("Employee discount: " + discount + "$");
+        }
+        return totalPrice;
     }
+
+    public double cashDiscount(boolean isCash){
+        if(isCash){
+            double discount = totalPrice * 0.05;
+            totalPrice -= discount;
+            System.out.println("Cash discount: " + discount + "$");
+        }
+        return totalPrice;
     }
+
+}
 
 
 
