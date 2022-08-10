@@ -1,16 +1,17 @@
 package Shop;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Shop {
     private String name;
-    private ArrayList<Category> categories = new ArrayList<Category>();
+    private List<Category> categories = new ArrayList<>();
 
     public Shop(String name) {
         this.name = name;
 
     }
-    public Shop(){
+
+    public Shop() {
 
     }
 
@@ -22,27 +23,28 @@ public class Shop {
         this.name = name;
     }
 
-    public ArrayList<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public ArrayList<String> getAllCategories(){
-        ArrayList<String> categoryNames = new ArrayList<String>();
-        for(Category category: categories){
-            categoryNames.add(category.getName());
-        }
-        return categoryNames;
-    }
-
-    public void setCategories(ArrayList<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
     public void addCategory(Category category) {
         categories.add(category);
     }
-    public void addCategory(ArrayList<Category> newCategories){
-        this.categories.addAll(newCategories);
+
+    public void removeCategory(Category category) {
+        categories.remove(category);
+    }
+
+    public void addCategories(List<Category> newCategories) {
+        categories.addAll(newCategories);
+    }
+
+    public void removeCategories(List<Category> categoriesToRemove) {
+        categories.removeAll(categoriesToRemove);
     }
 }
 

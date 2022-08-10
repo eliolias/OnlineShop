@@ -1,4 +1,5 @@
 package Shop;
+
 public abstract class Payment {
     private double Amount;
     private String type;
@@ -9,9 +10,14 @@ public abstract class Payment {
         this.type = type;
         this.isCash = isCash;
     }
-    public Payment(double Amount, String type){
+
+    public Payment(double Amount, String type) {
         this.Amount = Amount;
         this.type = type;
+    }
+
+    public Payment() {
+
     }
 
     public double getAmount() {

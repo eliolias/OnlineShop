@@ -1,8 +1,9 @@
 package Shop;
-//Not working correctly
-public class Coupon extends Payment{
+
+public class Coupon extends Payment {
     private boolean isPercent;
-    public Coupon(double Amount, String type, boolean isPercent){
+
+    public Coupon(double Amount, String type, boolean isPercent) {
         super(Amount, type);
         this.isPercent = isPercent;
     }

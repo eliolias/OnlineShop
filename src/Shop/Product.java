@@ -6,13 +6,14 @@ public class Product {
     private double price;
     private Category category;
 
-    public Product(String name, int sku, double price, Category category){
+    public Product(String name, int sku, double price, Category category) {
         this.name = name;
         this.sku = sku;
         this.price = price;
         this.category = category;
     }
-    public Product(){
+
+    public Product() {
 
     }
 
@@ -46,6 +47,11 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " - " + this.price + "$";
     }
 
 }
