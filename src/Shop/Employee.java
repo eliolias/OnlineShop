@@ -3,7 +3,7 @@ package Shop;
 import java.util.ArrayList;
 //Have to implement cost of employee work to package items
 public class Employee extends Human{
-    double ratePerItem;
+    private double ratePerItem;
     private ArrayList<Product> wishList;
     public Employee(String name, boolean isEmployee){
         super(name, true);
