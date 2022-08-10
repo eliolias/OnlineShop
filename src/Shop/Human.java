@@ -7,6 +7,9 @@ public abstract class Human {
         this.name = name;
         this.isEmployee = isEmployee;
     }
+    public Human(String name){
+        this.name = name;
+    }
     public Human(){
 
     }

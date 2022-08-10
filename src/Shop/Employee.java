@@ -1,16 +1,17 @@
 package Shop;
 
 import java.util.ArrayList;
-
+//Have to implement cost of employee work to package items
 public class Employee extends Human{
-    double ratePerItem;
+    private double ratePerItem;
     private ArrayList<Product> wishList;
     public Employee(String name, boolean isEmployee){
         super(name, true);
         ratePerItem = 2.5;
     }
-    public Employee(){
-
+    public Employee(String name){
+        super(name);
+        this.setEmployee(true);
     }
 
     public double getRatePerItem() {

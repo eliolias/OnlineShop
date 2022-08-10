@@ -56,6 +56,7 @@ public class Cart {
         if(payment.getType() == "Cash"){
             this.cashDiscount(true);
         }
+        payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
     }
     public void addWishListToCart(ArrayList<Product> wishlist){
@@ -88,27 +89,33 @@ public class Cart {
             }
         System.out.println("Added items from wishlist to cart: " + addedToCart);
         }
-    public void applyCoupon(){
-        //need to implement
 
+    public void applyCoupon(Coupon coupon){
+        if(coupon.isPercent()){
+            double discount = totalPrice * coupon.getAmount();
+            totalPrice -= discount;
+            System.out.println("Coupon: " + (coupon.getAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
+        }
+        else{
+            totalPrice -= coupon.getAmount();
+            System.out.println("Coupon discount amount: " + coupon.getAmount() + "$");
+        }
     }
 
-    public double applyEmployeeDiscount(boolean isEmployee){
+    public void applyEmployeeDiscount(boolean isEmployee){
         if(isEmployee){
             double discount = totalPrice * 0.20;
             totalPrice -= discount;
             System.out.println("Employee discount: " + discount + "$");
         }
-        return totalPrice;
     }
 
-    public double cashDiscount(boolean isCash){
+    public void cashDiscount(boolean isCash){
         if(isCash){
             double discount = totalPrice * 0.05;
             totalPrice -= discount;
-            System.out.println("Cash discount: " + discount + "$");
+            System.out.println("Purchased with Cash. Cash discount amount: " + discount + "$");
         }
-        return totalPrice;
     }
 
 }

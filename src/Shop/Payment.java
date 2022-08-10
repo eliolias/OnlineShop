@@ -1,22 +1,25 @@
 package Shop;
-//needs to get implemented with subclasses Credit Card and Cash
 public abstract class Payment {
-    int availableAmount;
-    String type;
-    boolean isCash;
+    private double Amount;
+    private String type;
+    private boolean isCash;
 
-    public Payment(int availableAmount, String type, boolean isCash) {
-        this.availableAmount = availableAmount;
+    public Payment(double Amount, String type, boolean isCash) {
+        this.Amount = Amount;
         this.type = type;
         this.isCash = isCash;
     }
-
-    public int getAvailableAmount() {
-        return availableAmount;
+    public Payment(double Amount, String type){
+        this.Amount = Amount;
+        this.type = type;
     }
 
-    public void setAvailableAmount(int availableAmount) {
-        this.availableAmount = availableAmount;
+    public double getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(double amount) {
+        this.Amount = amount;
     }
 
     public String getType() {
