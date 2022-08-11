@@ -2,9 +2,14 @@ package Shop;
 
 import java.util.*;
 
-public class Category {
-    private List<Product> products = new ArrayList<>();
+public abstract class Category {
+    private List<Product> products;
     private String name;
+
+    public Category(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
 
     public Category(String name) {
         this.name = name;
@@ -25,7 +30,7 @@ public class Category {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

@@ -52,17 +52,18 @@ public class Cart {
             productsPurchased.add(product.getName() + "-" + product.getPrice() + "$");
         }
         if (payment.getType().equals("Cash")) {
-            this.cashDiscount(true);
+            this.cashDiscount();
         }
         payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
     }
 
+    //Need to refactor this, many methods need to moved to soon to be created Order Class.
     public void addWishListToCart(List<Product> wishlist) {
         List<String> addedToCart = new ArrayList<>();
         for (Product product : wishlist) {
             int sku = product.getSku();
-            if (sku == 11111 || sku == 22222 || sku == 33333 || sku == 44444 || sku == 55555) {
+            if (sku == 11111 || sku == 11112 || sku == 11113 || sku == 11114 || sku == 11115 || sku == 11116 || sku == 11117 || sku == 11118 || sku == 11119 || sku == 11120 || sku == 11121 || sku == 11122) {
                 this.addToCart(product);
                 addedToCart.add(product.getName());
             } else {
@@ -93,12 +94,10 @@ public class Cart {
         }
     }
 
-    public void cashDiscount(boolean isCash) {
-        if (isCash) {
-            double discount = totalPrice * 0.05;
-            totalPrice -= discount;
-            System.out.println("Purchased with Cash | Cash discount amount: " + discount + "$");
-        }
+    public void cashDiscount() {
+        double discount = totalPrice * 0.05;
+        totalPrice -= discount;
+        System.out.println("Purchased with Cash | Cash discount amount: " + discount + "$");
     }
 
 }
