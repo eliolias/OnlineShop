@@ -1,6 +1,6 @@
 package Shop;
 
-public class Product {
+public abstract class Product {
     private String name;
     private int sku;
     private double price;
@@ -41,8 +41,8 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category.getName();
+    public Category getCategory() {
+        return category;
     }
 
     public void setCategory(Category category) {

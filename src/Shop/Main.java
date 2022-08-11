@@ -4,27 +4,46 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //Shop initialization
         Shop shop = new Shop("Online Shop");
-        Category clothing = new Category("Clothing");
-        Product tShirt = new Product("T-shirt", 11111, 8.99, clothing);
-        Product pants = new Product("Pants", 22222, 20.99, clothing);
-        Product socks = new Product("Socks", 33333, 3.49, clothing);
-        Product hoodie = new Product("Hoodie", 44444, 20.99, clothing);
-        Product hat = new Product("Hat", 55555, 12.99, clothing);
+        Clothing clothing = new Clothing("Clothing", "Summer");
+        Top top = new Top("Tops");
+        Bottom bottom = new Bottom("Bottoms");
+        HeadWear headWear = new HeadWear("HeadWear");
+        TShirt greenTShirt = new TShirt("Green T-Shirt", 11111, 8.99, top, 'M', "Green");
+        TShirt brownTShirt = new TShirt("Brown T-Shirt", 11112, 8.99, top, 'L', "Brown");
+        SweatShirt hoodie = new SweatShirt("Black Hoodie", 11113, 20.99, top, 'L', "Black", true);
+        SweatShirt knitSweater = new SweatShirt("Knitted Sweater", 11114, 39.99, top, 'S', "Gray", false);
+        Pants cargoPants = new Pants("Cargo Pants", 11115, 29.99, bottom, 'M', "Tan", "Work Pants");
+        Pants jeans = new Pants("Blue Jeans", 11116, 25.99, bottom, 'S', "Blue", "Jeans");
+        Shorts cargoShorts = new Shorts("Cargo Shorts", 11117, 18.99, bottom, 'M', "Dark Green", false);
+        Shorts swimTrunks = new Shorts("Swimming Shorts", 11118, 12.99, bottom, 'M', "Purple", true);
+        Hat yankeeHat = new Hat("Yankees Hat", 11119, 15.99, headWear, 'M', "Blue & White", "Baseball Hat");
+        Hat beenie = new Hat("Beenie", 11120, 9.99, headWear, 'S', "Burgundy", "Cuffed Beenie");
+        Sunglasses aviators = new Sunglasses("Aviator SunGlasses", 11121, 50.99, headWear, 'M', "Gold & Silver", "Aviator", true);
+        Sunglasses clubMasters = new Sunglasses("ClubMaster SunGlasses", 11122, 21.99, headWear, 'M', "Black", "ClubMaster", false);
+
         Employee bob = new Employee("bob");
         Cart bobCart = new Cart();
         Cash bobCash = new Cash(500, "Cash");
         Coupon bobCoupon = new Coupon(.25, "Coupon", true);
 
-        List<Product> productsToAdd = new ArrayList<>(Arrays.asList(tShirt, pants, socks, socks, hat));
-        List<Product> customerWishList = new ArrayList<>(Arrays.asList(tShirt, pants, hoodie));
-        clothing.addProducts(productsToAdd);
+        List<Product> clothingTopProducts = new ArrayList<>(Arrays.asList(greenTShirt, brownTShirt, hoodie, knitSweater));
+        List<Product> clothingBottomProducts = new ArrayList<>(Arrays.asList(cargoPants, jeans, cargoShorts, swimTrunks));
+        List<Product> clothingHeadWearProducts = new ArrayList<>(Arrays.asList(yankeeHat, beenie, aviators, clubMasters));
+        List<Product> customerWishList = new ArrayList<>(Arrays.asList(greenTShirt, hoodie, knitSweater, jeans, swimTrunks, beenie, aviators, clubMasters));
+        List<Clothing> clothingCategories = new ArrayList<>(Arrays.asList(top, bottom, headWear));
+        List<Product> allProducts = new ArrayList<>();
+        allProducts.addAll(clothingTopProducts);
+        allProducts.addAll(clothingBottomProducts);
+        allProducts.addAll(clothingHeadWearProducts);
+        clothing.setProducts(allProducts);
+        clothing.setClothingCategories(clothingCategories);
         shop.addCategory(clothing);
         bob.setWishList(customerWishList);
 
         System.out.println("Welcome to " + shop.getName());
         System.out.println("Available product categories: " + shop.getCategories());
+        System.out.println("Available clothing product categories: " + clothing.getClothingCategories());
         System.out.println("Products available in " + clothing.getName() + " category :" + clothing.getProducts());
         System.out.println(bob.getName() + "'s wishlist: " + bob.getWishListNames());
         bobCart.addWishListToCart(bob.getWishList());
