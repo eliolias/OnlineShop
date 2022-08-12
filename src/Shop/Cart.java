@@ -2,7 +2,7 @@ package Shop;
 
 import java.util.*;
 
-public class Cart {
+public class Cart implements Inventory{
     private List<Product> cartProducts = new ArrayList<>();
     private double totalPrice;
 
@@ -100,6 +100,19 @@ public class Cart {
         System.out.println("Purchased with Cash | Cash discount amount: " + discount + "$");
     }
 
+    @Override
+    public int addInventory(int invToAdd, Shop shop) {
+        shop.setInventory(shop.getInventory() + invToAdd);
+        return shop.getInventory();
+    }
+
+    @Override
+    public int subtractInventory(Shop shop) {
+        for(Product product: cartProducts){
+            shop.setInventory(shop.getInventory() - 1);
+        }
+        return shop.getInventory();
+    }
 }
 
 

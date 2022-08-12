@@ -1,12 +1,12 @@
 package Shop;
 
-public class Shorts extends Product {
+public class Shorts extends Product implements SeasonDiscount{
 
-    private char size;
+    private String size;
     private String color;
     boolean forSwimming;
 
-    public Shorts(String name, int sku, double price, Category category, char size, String color, boolean forSwimming) {
+    public Shorts(String name, int sku, double price, Category category, String size, String color, boolean forSwimming) {
         super(name, sku, price, category);
         this.size = size;
         this.color = color;
@@ -16,11 +16,11 @@ public class Shorts extends Product {
     public Shorts() {
     }
 
-    public char getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -38,5 +38,13 @@ public class Shorts extends Product {
 
     public void setForSwimming(boolean forSwimming) {
         this.forSwimming = forSwimming;
+    }
+
+    @Override
+    public void inSeasonDiscount() {
+        if(this.getCategory().getCurrentSeason() == season){
+            this.setPrice(this.getPrice() - discount);
+            System.out.println("In season discount for summer of 10$");
+        }
     }
 }

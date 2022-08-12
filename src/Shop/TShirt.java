@@ -1,11 +1,11 @@
 package Shop;
 
-public class TShirt extends Product {
+public class TShirt extends Product implements SeasonDiscount{
 
-    private char size;
+    private String size;
     private String color;
 
-    public TShirt(String name, int sku, double price, Category category, char size, String color) {
+    public TShirt(String name, int sku, double price, Category category, String size, String color) {
         super(name, sku, price, category);
         this.size = size;
         this.color = color;
@@ -14,11 +14,11 @@ public class TShirt extends Product {
     public TShirt() {
     }
 
-    public char getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -28,5 +28,13 @@ public class TShirt extends Product {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public void inSeasonDiscount() {
+        if(this.getCategory().getCurrentSeason() == season){
+            this.setPrice(this.getPrice() - discount);
+            System.out.println("In season discount for summer of 10$");
+        }
     }
 }

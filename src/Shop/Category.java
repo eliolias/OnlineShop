@@ -3,19 +3,25 @@ package Shop;
 import java.util.*;
 
 public abstract class Category {
-    private List<Product> products;
-    private String name;
 
-    public Category(String name, List<Product> products) {
+    private String name;
+    private List<Product> products;
+    private String currentSeason;
+
+
+    public Category(String name, List<Product> products, String currentSeason) {
         this.name = name;
         this.products = products;
+        this.currentSeason = currentSeason;
     }
 
-    public Category(String name) {
+    public Category(String name, String currentSeason) {
         this.name = name;
+        this.currentSeason = currentSeason;
     }
 
     public Category() {
+
     }
 
     public String getName() {
@@ -32,6 +38,14 @@ public abstract class Category {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public String getCurrentSeason() {
+        return currentSeason;
+    }
+
+    public void setCurrentSeason(String currentSeason) {
+        this.currentSeason = currentSeason;
     }
 
     public void addProduct(Product product) {

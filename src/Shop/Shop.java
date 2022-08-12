@@ -5,6 +5,7 @@ import java.util.*;
 public class Shop {
     private String name;
     private List<Category> categories = new ArrayList<>();
+    private int inventory = 100;
 
     public Shop(String name) {
         this.name = name;
@@ -21,6 +22,14 @@ public class Shop {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
     }
 
     public List<Category> getCategories() {
@@ -46,5 +55,6 @@ public class Shop {
     public void removeCategories(List<Category> categoriesToRemove) {
         categories.removeAll(categoriesToRemove);
     }
+
 }
 

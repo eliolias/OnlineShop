@@ -2,11 +2,11 @@ package Shop;
 
 public class SweatShirt extends Product {
 
-    private char size;
+    private String size;
     private String color;
     private Boolean hasHood;
 
-    public SweatShirt(String name, int sku, double price, Category category, char size, String color, Boolean hasHood) {
+    public SweatShirt(String name, int sku, double price, Category category, String size, String color, Boolean hasHood) {
         super(name, sku, price, category);
         this.size = size;
         this.color = color;
@@ -16,11 +16,11 @@ public class SweatShirt extends Product {
     public SweatShirt() {
     }
 
-    public char getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

@@ -2,15 +2,27 @@ package Shop;
 
 import java.util.*;
 
-public abstract class Human {
-
+public abstract class Human{
     private List<Product> wishList;
+
+
     private String name;
     private boolean isEmployee;
+
+    private int shopperPoints;
+
+
+    public Human(String name, boolean isEmployee, int shopperPoints) {
+        this.name = name;
+        this.isEmployee = isEmployee;
+
+        this.shopperPoints = shopperPoints;
+    }
 
     public Human(String name, boolean isEmployee) {
         this.name = name;
         this.isEmployee = isEmployee;
+
     }
 
     public Human(String name) {
@@ -45,6 +57,14 @@ public abstract class Human {
         this.wishList = wishList;
     }
 
+    public int getshopperPoints() {
+        return shopperPoints;
+    }
+
+    public void setshopperPoints(int frequentShopper) {
+        this.shopperPoints = frequentShopper;
+    }
+
     public List<String> getWishListNames() {
         List<String> names = new ArrayList<>();
         for (Product product : wishList) {
@@ -52,4 +72,6 @@ public abstract class Human {
         }
         return names;
     }
+
+
 }

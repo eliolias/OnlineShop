@@ -2,11 +2,11 @@ package Shop;
 
 public class Pants extends Product {
 
-    private char size;
+    private String size;
     private String color;
     private String type;
 
-    public Pants(String name, int sku, double price, Category category, char size, String color, String type) {
+    public Pants(String name, int sku, double price, Category category, String size, String color, String type) {
         super(name, sku, price, category);
         this.size = size;
         this.color = color;
@@ -16,11 +16,11 @@ public class Pants extends Product {
     public Pants() {
     }
 
-    public char getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
