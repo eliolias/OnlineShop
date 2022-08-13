@@ -20,6 +20,10 @@ public abstract class Category {
         this.currentSeason = currentSeason;
     }
 
+    public Category(String name){
+        this.name = name;
+    }
+
     public Category() {
 
     }
