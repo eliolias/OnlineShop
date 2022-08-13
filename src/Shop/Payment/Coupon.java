@@ -1,4 +1,4 @@
-package Shop;
+package Shop.Payment;
 
 public class Coupon extends Payment {
     private boolean isPercent;

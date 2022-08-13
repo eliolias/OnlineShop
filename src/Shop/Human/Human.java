@@ -1,4 +1,6 @@
-package Shop;
+package Shop.Human;
+
+import Shop.Product;
 
 import java.util.*;
 

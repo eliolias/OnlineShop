@@ -1,4 +1,4 @@
-package Shop;
+package Shop.Payment;
 
 public class Cash extends Payment {
     public Cash(double Amount, String type) {

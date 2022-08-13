@@ -1,4 +1,7 @@
-package Shop;
+package Shop.Bottom;
+
+import Shop.Category;
+import Shop.Product;
 
 public class Pants extends Product {
 

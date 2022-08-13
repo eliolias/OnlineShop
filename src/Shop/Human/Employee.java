@@ -1,8 +1,11 @@
-package Shop;
+package Shop.Human;
+
+import Shop.*;
+import Shop.Payment.Payment;
 
 import java.util.*;
 
-public class Employee extends Human implements Pay, Rewards{
+public class Employee extends Human implements Pay, Rewards {
     private double ratePerItem;
     private double totalPay;
 

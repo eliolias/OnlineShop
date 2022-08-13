@@ -1,4 +1,7 @@
-package Shop;
+package Shop.Top;
+
+import Shop.Clothing;
+import Shop.Product;
 
 import java.util.List;
 
@@ -15,3 +18,4 @@ public class Top extends Clothing {
     }
 
 }
+

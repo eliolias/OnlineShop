@@ -37,4 +37,9 @@ public class Clothing extends Category {
         this.clothingCategories = clothingCategories;
     }
 
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
 }

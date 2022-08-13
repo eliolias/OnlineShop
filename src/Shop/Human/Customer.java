@@ -1,8 +1,11 @@
-package Shop;
+package Shop.Human;
+
+import Shop.*;
+import Shop.Payment.Payment;
 
 import java.util.List;
 
-public class Customer extends Human implements Pay, Rewards{
+public class Customer extends Human implements Pay, Rewards {
 
     public Customer(String name, boolean isEmployee, List<String> sizes, int frequentShopperPoints) {
         super(name, true, frequentShopperPoints);

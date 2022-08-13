@@ -1,8 +1,11 @@
-package Shop;
+package Shop.HeadWear;
+
+import Shop.Clothing;
+import Shop.Product;
 
 import java.util.*;
 
-public class HeadWear extends Clothing{
+public class HeadWear extends Clothing {
     public HeadWear(String name, List<Product> products) {
         super(name, products);
     }

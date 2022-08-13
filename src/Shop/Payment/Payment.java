@@ -1,4 +1,4 @@
-package Shop;
+package Shop.Payment;
 
 public abstract class Payment {
     private double Amount;

@@ -1,2 +1,9 @@
-package Shop;public class CouponException {
+package Shop;
+
+public class CouponException extends Exception{
+
+    CouponException(String message){
+        super(message);
+    }
+
 }

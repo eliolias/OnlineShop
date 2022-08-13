@@ -1,6 +1,10 @@
-package Shop;
+package Shop.HeadWear;
 
-public class Sunglasses extends Product implements Warranty{
+import Shop.Category;
+import Shop.Product;
+import Shop.Warranty;
+
+public class Sunglasses extends Product implements Warranty {
 
     private String size;
     private String color;

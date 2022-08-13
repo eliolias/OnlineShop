@@ -1,9 +1,22 @@
 package Shop;
 
+import Shop.Bottom.Bottom;
+import Shop.Bottom.Pants;
+import Shop.Bottom.Shorts;
+import Shop.HeadWear.Hat;
+import Shop.HeadWear.HeadWear;
+import Shop.HeadWear.Sunglasses;
+import Shop.Human.Employee;
+import Shop.Payment.Cash;
+import Shop.Payment.Coupon;
+import Shop.Top.SweatShirt;
+import Shop.Top.TShirt;
+import Shop.Top.Top;
+
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CouponException {
         Shop shop = new Shop("Online Shop");
         Clothing clothing = new Clothing("Clothing", "Summer");
         Top top = new Top("Tops");
@@ -50,6 +63,7 @@ public class Main {
         bobCart.aggregateTotalPrice();
         System.out.println("Cart total Price: " + bobCart.getTotalPrice() + "$");
         bobCart.applyEmployeeDiscount(bob.isEmployee());
+        bobCart.checkCoupon(bobCoupon);
         bobCart.applyCoupon(bobCoupon);
         System.out.println("----------");
         System.out.println("Products in cart: " + bobCart.getCartProducts());

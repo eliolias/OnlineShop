@@ -1,4 +1,7 @@
-package Shop;
+package Shop.Top;
+
+import Shop.Category;
+import Shop.Product;
 
 public class SweatShirt extends Product {
 

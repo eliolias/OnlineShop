@@ -1,6 +1,10 @@
-package Shop;
+package Shop.Top;
 
-public class TShirt extends Product implements SeasonDiscount{
+import Shop.Category;
+import Shop.Product;
+import Shop.SeasonDiscount;
+
+public class TShirt extends Product implements SeasonDiscount {
 
     private String size;
     private String color;

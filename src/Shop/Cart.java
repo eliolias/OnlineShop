@@ -1,8 +1,11 @@
 package Shop;
 
+import Shop.Payment.Coupon;
+import Shop.Payment.Payment;
+
 import java.util.*;
 
-public class Cart implements Inventory{
+public class Cart implements Inventory {
     private List<Product> cartProducts = new ArrayList<>();
     private double totalPrice;
 
@@ -75,6 +78,11 @@ public class Cart implements Inventory{
         }
     }
 
+    public void checkWishList(List<Product> wishList) throws WishListException{
+
+    }
+
+
     public void applyCoupon(Coupon coupon) {
         if (coupon.isPercent()) {
             double discount = totalPrice * coupon.getAmount();
@@ -83,6 +91,20 @@ public class Cart implements Inventory{
         } else {
             totalPrice -= coupon.getAmount();
             System.out.println("Coupon discount amount: " + coupon.getAmount() + "$");
+        }
+    }
+
+    public void checkCoupon(Coupon coupon) throws CouponException{
+        if (coupon.isPercent()) {
+            if (coupon.getAmount() > 0.99) {
+                throw new CouponException("Invalid Coupon");
+            }
+            System.out.println("Valid Coupon");
+        } else {
+            if (coupon.getAmount() > 100) {
+                throw new CouponException("Invalid Coupon");
+            }
+            System.out.println("Valid Coupon");
         }
     }
 
@@ -108,7 +130,7 @@ public class Cart implements Inventory{
 
     @Override
     public int subtractInventory(Shop shop) {
-        for(Product product: cartProducts){
+        for (Product product : cartProducts) {
             shop.setInventory(shop.getInventory() - 1);
         }
         return shop.getInventory();
