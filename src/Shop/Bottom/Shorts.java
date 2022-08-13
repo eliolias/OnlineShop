@@ -44,6 +44,7 @@ public class Shorts extends Product implements SeasonDiscount {
         this.forSwimming = forSwimming;
     }
 
+    //This should probably not be implemented here
     @Override
     public void inSeasonDiscount() {
         if(this.getCategory().getCurrentSeason() == season){

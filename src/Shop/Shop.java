@@ -56,5 +56,11 @@ public class Shop {
         categories.removeAll(categoriesToRemove);
     }
 
+    public void checkCategories(List<Category> categories) throws CategoriesException{
+        if(categories.isEmpty()){
+            throw new CategoriesException("Empty list of categories. Invalid");
+        }
+        System.out.println("Valid list of categories");
+    }
 }
 

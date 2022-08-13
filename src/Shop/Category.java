@@ -20,7 +20,7 @@ public abstract class Category {
         this.currentSeason = currentSeason;
     }
 
-    public Category(String name){
+    public Category(String name) {
         this.name = name;
     }
 
@@ -67,6 +67,14 @@ public abstract class Category {
     public void removeProducts(List<Product> productList) {
         products.removeAll(productList);
     }
+
+    public void checkCategories(List<Category> categories) throws CategoriesException {
+        if (categories.isEmpty()) {
+            throw new CategoriesException("Empty list of categories. Invalid");
+        }
+        System.out.println("Valid list of categories");
+    }
+
 
     @Override
     public String toString() {

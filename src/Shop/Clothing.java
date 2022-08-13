@@ -7,10 +7,10 @@ public class Clothing extends Category {
 
     private String currentSeason;
 
-    private List<Clothing> clothingCategories;
+    private List<Category> clothingCategories;
 
 
-    public Clothing(String name,  List<Clothing> clothingCategories, String currentSeason) {
+    public Clothing(String name, List<Category> clothingCategories, String currentSeason) {
         super(name);
         this.currentSeason = currentSeason;
         this.clothingCategories = clothingCategories;
@@ -41,12 +41,13 @@ public class Clothing extends Category {
         this.currentSeason = currentSeason;
     }
 
-    public List<Clothing> getClothingCategories() {
+    public List<Category> getClothingCategories() {
         return clothingCategories;
     }
 
-    public void setClothingCategories(List<Clothing> clothingCategories) {
+    public void setClothingCategories(List<Category> clothingCategories) {
         this.clothingCategories = clothingCategories;
     }
+
 
 }

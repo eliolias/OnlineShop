@@ -16,7 +16,7 @@ import Shop.Top.Top;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws CouponException {
+    public static void main(String[] args) throws CouponException, WishListException, ProductsException, CategoriesException, CartException {
         Shop shop = new Shop("Online Shop");
         Clothing clothing = new Clothing("Clothing", "Summer");
         Top top = new Top("Tops");
@@ -44,14 +44,18 @@ public class Main {
         List<Product> clothingBottomProducts = new ArrayList<>(Arrays.asList(cargoPants, jeans, cargoShorts, swimTrunks));
         List<Product> clothingHeadWearProducts = new ArrayList<>(Arrays.asList(yankeeHat, beenie, aviators, clubMasters));
         List<Product> customerWishList = new ArrayList<>(Arrays.asList(greenTShirt, hoodie, knitSweater, jeans, swimTrunks, beenie, aviators, clubMasters));
-        List<Clothing> clothingCategories = new ArrayList<>(Arrays.asList(top, bottom, headWear));
+        List<Category> shopCategories = new ArrayList<>(Arrays.asList(clothing));
+        List<Category> clothingCategories = new ArrayList<>(Arrays.asList(top, bottom, headWear));
         List<Product> allProducts = new ArrayList<>();
         allProducts.addAll(clothingTopProducts);
         allProducts.addAll(clothingBottomProducts);
         allProducts.addAll(clothingHeadWearProducts);
+        shop.checkCategories(shopCategories);
+        clothing.checkCategories(clothingCategories);
         clothing.setProducts(allProducts);
         clothing.setClothingCategories(clothingCategories);
         shop.addCategory(clothing);
+        bobCart.checkWishList(customerWishList);
         bob.setWishList(customerWishList);
 
         System.out.println("Welcome to " + shop.getName());
@@ -63,12 +67,14 @@ public class Main {
         bobCart.aggregateTotalPrice();
         System.out.println("Cart total Price: " + bobCart.getTotalPrice() + "$");
         bobCart.applyEmployeeDiscount(bob.isEmployee());
+        bobCart.checkCart(bobCart.getCartProducts());
         bobCart.checkCoupon(bobCoupon);
         bobCart.applyCoupon(bobCoupon);
         System.out.println("----------");
         System.out.println("Products in cart: " + bobCart.getCartProducts());
         System.out.println("Cart total Price with discounts: " + bobCart.getTotalPrice() + "$");
         System.out.println("----------");
+
         System.out.println(bob.getName() + " purchased : " + bobCart.makePurchase(bobCash) + " for " + bobCart.getTotalPrice() + "$");
         System.out.println("----------");
         System.out.println("Cash left: " + bobCash.getAmount());

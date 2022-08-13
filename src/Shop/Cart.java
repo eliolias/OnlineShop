@@ -78,8 +78,18 @@ public class Cart implements Inventory {
         }
     }
 
-    public void checkWishList(List<Product> wishList) throws WishListException{
+    public void checkCart(List<Product> cartProducts) throws CartException{
+        if(cartProducts.isEmpty()){
+            throw new CartException("Invalid cart. Cart is empty.");
+        }
+        System.out.println("Valid Cart.");
+    }
 
+    public void checkWishList(List<Product> wishList) throws WishListException{
+        if(wishList.isEmpty()){
+            throw new WishListException("Invalid Wishlist. Wishlist is empty.");
+        }
+        System.out.println("Valid Wishlist.");
     }
 
 
