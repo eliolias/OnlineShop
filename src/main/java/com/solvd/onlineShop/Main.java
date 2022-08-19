@@ -14,11 +14,17 @@ import com.solvd.onlineShop.headWear.Sunglasses;
 import com.solvd.onlineShop.top.SweatShirt;
 import com.solvd.onlineShop.top.TShirt;
 import com.solvd.onlineShop.top.Top;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 public class Main {
+
+    private final static Logger LOGGER = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
+
+
         Shop shop = new Shop("Online Shop");
         Clothing clothing = new Clothing("Clothing", "Summer");
         Top top = new Top("Tops");
@@ -60,26 +66,27 @@ public class Main {
         bobCart.checkWishList(customerWishList);
         bob.setWishList(customerWishList);
 
-        System.out.println("Welcome to " + shop.getName());
-        System.out.println("Available product categories: " + shop.getCategories());
-        System.out.println("Available clothing product categories: " + clothing.getClothingCategories());
-        System.out.println("Products available in " + clothing.getName() + " category :" + clothing.getProducts());
-        System.out.println(bob.getName() + "'s wishlist: " + bob.getWishList());
+
+        LOGGER.info("Welcome to " + shop.getName());
+        LOGGER.info("Available product categories: " + shop.getCategories());
+        LOGGER.info("Available clothing product categories: " + clothing.getClothingCategories());
+        LOGGER.info("Products available in " + clothing.getName() + " category :" + clothing.getProducts());
+        LOGGER.info(bob.getName() + "'s wishlist: " + bob.getWishList());
         bobCart.addWishListToCart(bob.getWishList());
         bobCart.aggregateTotalPrice();
-        System.out.println("Cart total Price: " + bobCart.getTotalPrice() + "$");
+        LOGGER.info("Cart total Price: " + bobCart.getTotalPrice() + "$");
         bobCart.applyEmployeeDiscount(bob.isEmployee());
         bobCart.checkCart(bobCart.getCartProducts());
         bobCart.checkCoupon(bobCoupon);
         bobCart.applyCoupon(bobCoupon);
-        System.out.println("----------");
-        System.out.println("Products in cart: " + bobCart.getCartProducts());
-        System.out.println("Cart total Price with discounts: " + bobCart.getTotalPrice() + "$");
-        System.out.println("----------");
+        LOGGER.info("----------");
+        LOGGER.info("Products in cart: " + bobCart.getCartProducts());
+        LOGGER.info("Cart total Price with discounts: " + bobCart.getTotalPrice() + "$");
+        LOGGER.info("----------");
+        LOGGER.info(bob.getName() + " purchased : " + bobCart.makePurchase(bobCash) + " for " + bobCart.getTotalPrice() + "$");
+        LOGGER.info("----------");
+        LOGGER.info("Cash left: " + bobCash.getAmount());
 
-        System.out.println(bob.getName() + " purchased : " + bobCart.makePurchase(bobCash) + " for " + bobCart.getTotalPrice() + "$");
-        System.out.println("----------");
-        System.out.println("Cash left: " + bobCash.getAmount());
 
     }
 
