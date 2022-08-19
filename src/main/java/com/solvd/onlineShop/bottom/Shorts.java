@@ -1,40 +1,20 @@
 package com.solvd.onlineShop.bottom;
 
 import com.solvd.onlineShop.Category;
-import com.solvd.onlineShop.Product;
-import com.solvd.onlineShop.SeasonDiscount;
+import com.solvd.onlineShop.ClothingProduct;
+import com.solvd.onlineShop.SeasonDiscountable;
 
-public class Shorts extends Product implements SeasonDiscount {
-
-    private String size;
-    private String color;
+public class Shorts extends ClothingProduct implements SeasonDiscountable {
     boolean forSwimming;
 
-    public Shorts(String name, int sku, double price, Category category, String size, String color, boolean forSwimming) {
-        super(name, sku, price, category);
-        this.size = size;
-        this.color = color;
+    public Shorts(String name, int sku, double price, Category category, String size, String color, String type, boolean forSwimming) {
+        super(name, sku, price, category, size, color, type);
         this.forSwimming = forSwimming;
     }
 
     public Shorts() {
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public boolean isForSwimming() {
         return forSwimming;

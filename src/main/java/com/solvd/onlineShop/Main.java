@@ -30,14 +30,14 @@ public class Main {
         Top top = new Top("Tops");
         Bottom bottom = new Bottom("Bottoms");
         HeadWear headWear = new HeadWear("HeadWear");
-        TShirt greenTShirt = new TShirt("Green T-Shirt", 11111, 8.99, top, "M", "Green");
-        TShirt brownTShirt = new TShirt("Brown T-Shirt", 11112, 8.99, top, "L", "Brown");
-        SweatShirt hoodie = new SweatShirt("Black Hoodie", 11113, 20.99, top, "L", "Black", true);
-        SweatShirt knitSweater = new SweatShirt("Knitted Sweater", 11114, 39.99, top, "S", "Gray", false);
+        TShirt greenTShirt = new TShirt("Green T-Shirt", 11111, 8.99, top, "M", "Green", "Dress Tshirt");
+        TShirt brownTShirt = new TShirt("Brown T-Shirt", 11112, 8.99, top, "L", "Brown", "plain Tshirt");
+        SweatShirt hoodie = new SweatShirt("Black Hoodie", 11113, 20.99, top, "L", "Black", "Large-fit hoodie", true);
+        SweatShirt knitSweater = new SweatShirt("Knitted Sweater", 11114, 39.99, top, "S", "Gray", "Sweater", false);
         Pants cargoPants = new Pants("Cargo Pants", 11115, 29.99, bottom, "M", "Tan", "Work Pants");
         Pants jeans = new Pants("Blue Jeans", 11116, 25.99, bottom, "S", "Blue", "Jeans");
-        Shorts cargoShorts = new Shorts("Cargo Shorts", 11117, 18.99, bottom, "M", "Dark Green", false);
-        Shorts swimTrunks = new Shorts("Swimming Shorts", 11118, 12.99, bottom, "L", "Purple", true);
+        Shorts cargoShorts = new Shorts("Cargo Shorts", 11117, 18.99, bottom, "M", "Dark Green", "Khaki Cargo Shorts", false);
+        Shorts swimTrunks = new Shorts("Swimming Shorts", 11118, 12.99, bottom, "L", "Purple", "Surf swim shorts", true);
         Hat yankeeHat = new Hat("Yankees Hat", 11119, 15.99, headWear, "L", "Blue & White", "Baseball Hat");
         Hat beenie = new Hat("Beenie", 11120, 9.99, headWear, "L", "Burgundy", "Cuffed Beenie");
         Sunglasses aviators = new Sunglasses("Aviator SunGlasses", 11121, 50.99, headWear, "M", "Gold & Silver", "Aviator", true);
@@ -48,10 +48,10 @@ public class Main {
         Cash bobCash = new Cash(500, "Cash");
         Coupon bobCoupon = new Coupon(.25, "Coupon", true);
 
-        List<Product> clothingTopProducts = new ArrayList<>(Arrays.asList(greenTShirt, brownTShirt, hoodie, knitSweater));
-        List<Product> clothingBottomProducts = new ArrayList<>(Arrays.asList(cargoPants, jeans, cargoShorts, swimTrunks));
-        List<Product> clothingHeadWearProducts = new ArrayList<>(Arrays.asList(yankeeHat, beenie, clubMasters, aviators));
-        List<Product> customerWishList = new ArrayList<>(Arrays.asList(greenTShirt, hoodie, knitSweater, jeans, swimTrunks, beenie, aviators, clubMasters));
+        List<ClothingProduct> clothingTopProducts = new ArrayList<>(Arrays.asList(greenTShirt, brownTShirt, hoodie, knitSweater));
+        List<ClothingProduct> clothingBottomProducts = new ArrayList<>(Arrays.asList(cargoPants, jeans, cargoShorts, swimTrunks));
+        List<ClothingProduct> clothingHeadWearProducts = new ArrayList<>(Arrays.asList(yankeeHat, beenie, clubMasters, aviators));
+        List<ClothingProduct> customerWishList = new ArrayList<>(Arrays.asList(greenTShirt, hoodie, knitSweater, jeans, swimTrunks, beenie, aviators, clubMasters));
         List<Clothing> shopCategories = new ArrayList<>(Arrays.asList(clothing));
         List<Clothing> clothingCategories = new ArrayList<>(Arrays.asList(top, bottom, headWear));
         List<Product> allProducts = new ArrayList<>();

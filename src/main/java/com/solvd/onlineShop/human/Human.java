@@ -1,11 +1,13 @@
 package com.solvd.onlineShop.human;
 
+import com.solvd.onlineShop.Clothing;
+import com.solvd.onlineShop.ClothingProduct;
 import com.solvd.onlineShop.Product;
 
 import java.util.*;
 
 public abstract class Human{
-    private List<Product> wishList;
+    private List<ClothingProduct> wishList;
 
 
     private String name;
@@ -51,11 +53,11 @@ public abstract class Human{
         isEmployee = employee;
     }
 
-    public List<Product> getWishList() {
+    public List<ClothingProduct> getWishList() {
         return wishList;
     }
 
-    public void setWishList(List<Product> wishList) {
+    public void setWishList(List<ClothingProduct> wishList) {
         this.wishList = wishList;
     }
 

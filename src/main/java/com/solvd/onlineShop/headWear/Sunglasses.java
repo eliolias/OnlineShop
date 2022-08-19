@@ -1,49 +1,21 @@
 package com.solvd.onlineShop.headWear;
 
 import com.solvd.onlineShop.Category;
-import com.solvd.onlineShop.Warranty;
+import com.solvd.onlineShop.ClothingProduct;
+import com.solvd.onlineShop.Warrantable;
 import com.solvd.onlineShop.Product;
 
-public class Sunglasses extends Product implements Warranty {
+public class Sunglasses extends ClothingProduct implements Warrantable {
 
-    private String size;
-    private String color;
-    private String type;
     private Boolean isPolarized;
 
     public Sunglasses(String name, int sku, double price, Category category, String size, String color, String type, Boolean isPolarized) {
-        super(name, sku, price, category);
-        this.size = size;
-        this.color = color;
-        this.type = type;
+        super(name, sku, price, category, size, color, type);
+
         this.isPolarized = isPolarized;
     }
 
     public Sunglasses() {
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Boolean getPolarized() {

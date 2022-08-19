@@ -1,6 +1,6 @@
 package com.solvd.onlineShop;
 
-public interface Warranty {
+public interface Warrantable {
 
     double warrantyPrice = 0.1;
     double warrantyPrice();

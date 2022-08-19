@@ -62,7 +62,7 @@ public class Cart implements Inventory {
     }
 
     //Need to refactor this, many methods need to moved to soon to be created Order Class.
-    public void addWishListToCart(List<Product> wishlist) {
+    public void addWishListToCart(List<ClothingProduct> wishlist) {
         List<String> addedToCart = new ArrayList<>();
         for (Product product : wishlist) {
             product.checkProduct(product);
@@ -86,7 +86,7 @@ public class Cart implements Inventory {
         System.out.println("Valid Cart.");
     }
 
-    public void checkWishList(List<Product> wishList) {
+    public void checkWishList(List<ClothingProduct> wishList) {
         if(wishList.isEmpty()){
             throw new WishListException("Invalid Wishlist. Wishlist is empty.");
         }

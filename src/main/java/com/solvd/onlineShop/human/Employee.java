@@ -2,13 +2,13 @@ package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.payment.Payment;
 import com.solvd.onlineShop.Cart;
-import com.solvd.onlineShop.Pay;
+import com.solvd.onlineShop.IPay;
 import com.solvd.onlineShop.Product;
-import com.solvd.onlineShop.Rewards;
+import com.solvd.onlineShop.Rewardable;
 
 import java.util.*;
 
-public class Employee extends Human implements Pay, Rewards {
+public class Employee extends Human implements IPay, Rewardable {
     private double ratePerItem;
     private double totalPay;
 

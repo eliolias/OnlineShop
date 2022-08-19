@@ -1,6 +1,6 @@
 package com.solvd.onlineShop;
 
-public interface Rewards {
+public interface Rewardable {
     int employeeMultiplier = 2;
 
     int earnPoints(Cart cart);

@@ -2,13 +2,13 @@ package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.payment.Payment;
 import com.solvd.onlineShop.Cart;
-import com.solvd.onlineShop.Pay;
+import com.solvd.onlineShop.IPay;
 import com.solvd.onlineShop.Product;
-import com.solvd.onlineShop.Rewards;
+import com.solvd.onlineShop.Rewardable;
 
 import java.util.List;
 
-public class Customer extends Human implements Pay, Rewards {
+public class Customer extends Human implements IPay, Rewardable {
 
     public Customer(String name, boolean isEmployee, List<String> sizes, int frequentShopperPoints) {
         super(name, true, frequentShopperPoints);
