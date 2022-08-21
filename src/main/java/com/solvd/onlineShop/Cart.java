@@ -1,5 +1,6 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.payment.Cash;
 import com.solvd.onlineShop.payment.Coupon;
 import com.solvd.onlineShop.payment.Payment;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +26,7 @@ public class Cart implements Inventory {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -59,7 +60,9 @@ public class Cart implements Inventory {
             productsPurchased.add(product.getName() + "-" + product.getPrice() + "$");
         }
         if (payment.getType().equals("Cash")) {
-            this.cashDiscount();
+            Cash cash = new Cash();
+            cash.setAmount(payment.getAmount());
+            cash.cashDiscount(this);
         }
         payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
@@ -131,11 +134,11 @@ public class Cart implements Inventory {
         }
     }
 
-    public void cashDiscount() {
+/*    public void cashDiscount() {
         double discount = totalPrice * 0.05;
         totalPrice -= discount;
         LOGGER.info("Purchased with Cash | Cash discount amount: " + discount + "$");
-    }
+    }*/
 
     @Override
     public int addInventory(int invToAdd, Shop shop) {
