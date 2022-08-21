@@ -1,8 +1,14 @@
 package com.solvd.onlineShop;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.*;
 
 public class Shop {
+
+    private final static Logger LOGGER = LogManager.getLogger(Shop.class);
+
     private String name;
     private List<Category> categories = new ArrayList<>();
     private int inventory = 100;
@@ -60,7 +66,7 @@ public class Shop {
         if(categories.isEmpty()){
             throw new CategoriesException("Empty list of categories. Invalid");
         }
-        System.out.println("Valid list of categories");
+        LOGGER.info("Valid list of categories");
     }
 }
 

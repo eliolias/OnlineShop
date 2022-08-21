@@ -5,9 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import com.solvd.onlineShop.Main;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TextUtil {
+    private final static Logger LOGGER = LogManager.getLogger(TextUtil.class);
+
 
     public static void processFile() throws IOException {
         File readFile = new File("src/main/resources/article.txt");
@@ -31,7 +36,7 @@ public class TextUtil {
 
         }
         FileUtils.writeLines(writeFile, lines);
-        System.out.println("WRITING");
+        LOGGER.info("WRITING");
     }
 
     public static void main(String[] args) throws IOException {

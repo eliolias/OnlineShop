@@ -2,9 +2,14 @@ package com.solvd.onlineShop.bottom;
 
 import com.solvd.onlineShop.Category;
 import com.solvd.onlineShop.ClothingProduct;
+import com.solvd.onlineShop.Main;
 import com.solvd.onlineShop.SeasonDiscountable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Shorts extends ClothingProduct implements SeasonDiscountable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Shorts.class);
     boolean forSwimming;
 
     public Shorts(String name, int sku, double price, Category category, String size, String color, String type, boolean forSwimming) {
@@ -29,7 +34,7 @@ public class Shorts extends ClothingProduct implements SeasonDiscountable {
     public void inSeasonDiscount() {
         if(this.getCategory().getCurrentSeason() == season){
             this.setPrice(this.getPrice() - discount);
-            System.out.println("In season discount for summer of 10$");
+            LOGGER.info("In season discount for summer of 10$");
         }
     }
 }
