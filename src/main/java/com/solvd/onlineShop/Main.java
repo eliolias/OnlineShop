@@ -48,6 +48,10 @@ public class Main {
         Cash bobCash = new Cash(500, "Cash");
         Coupon bobCoupon = new Coupon(.25, "Coupon", true);
 
+        List<String> topCategories = new ArrayList<>(Arrays.asList(greenTShirt.getType(), brownTShirt.getType(), hoodie.getType(), knitSweater.getType()));
+        List<String> bottomCategories = new ArrayList<>(Arrays.asList(cargoPants.getType(), jeans.getType(), swimTrunks.getType(), cargoShorts.getType()));
+        List<String> headWearCategories = new ArrayList<>(Arrays.asList(yankeeHat.getType(), beenie.getType(), aviators.getType(), clubMasters.getType()));
+
         List<ClothingProduct> clothingTopProducts = new ArrayList<>(Arrays.asList(greenTShirt, brownTShirt, hoodie, knitSweater));
         List<ClothingProduct> clothingBottomProducts = new ArrayList<>(Arrays.asList(cargoPants, jeans, cargoShorts, swimTrunks));
         List<ClothingProduct> clothingHeadWearProducts = new ArrayList<>(Arrays.asList(yankeeHat, beenie, clubMasters, aviators));
@@ -55,6 +59,9 @@ public class Main {
         List<Clothing> shopCategories = new ArrayList<>(Arrays.asList(clothing));
         List<Clothing> clothingCategories = new ArrayList<>(Arrays.asList(top, bottom, headWear));
         List<Product> allProducts = new ArrayList<>();
+        top.setTopTypes(topCategories);
+        bottom.setBottomTypes(bottomCategories);
+        headWear.setHeadWearTypes(headWearCategories);
         allProducts.addAll(clothingTopProducts);
         allProducts.addAll(clothingBottomProducts);
         allProducts.addAll(clothingHeadWearProducts);
