@@ -1,4 +1,4 @@
-package com.solvd.onlineShop.Text;
+package com.solvd.onlineShop.text;
 
 import java.util.*;
 import java.io.File;

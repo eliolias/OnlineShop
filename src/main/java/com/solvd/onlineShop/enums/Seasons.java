@@ -1,4 +1,4 @@
-package com.solvd.onlineShop;
+package com.solvd.onlineShop.enums;
 
 public enum Seasons {
     SUMMER ("Summer"),
