@@ -6,7 +6,7 @@ import com.solvd.onlineShop.enums.Sizes;
 
 public class SweatShirt extends ClothingProduct {
 
-    private Boolean hasHood;
+    private boolean hasHood;
 
     public SweatShirt(String name, int sku, double price, Category category, Sizes size, String color, String type, Boolean hasHood) {
         super(name, sku, price, category, size, color, type);

@@ -1,6 +1,7 @@
 package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.*;
+import com.solvd.onlineShop.enums.Sizes;
 import com.solvd.onlineShop.interfaces.IPay;
 import com.solvd.onlineShop.interfaces.Rewardable;
 import com.solvd.onlineShop.payment.Payment;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class Employee extends Human implements IPay, Rewardable {
+public class Employee extends Human {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
@@ -55,10 +56,9 @@ public class Employee extends Human implements IPay, Rewardable {
         //implement cost of employee to package X items
     }
 
-    @Override
     public void pay(Payment payment, Cart cart) {
         if (payment.getAmount() > cart.getTotalPrice()) {
-            double taxes = cart.getTotalPrice() * tax;
+            double taxes = cart.getTotalPrice() * 0.185;
             payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
             LOGGER.info("Employee" + this.getName() + "remaining funds: " + payment.getAmount());
         }
@@ -66,11 +66,10 @@ public class Employee extends Human implements IPay, Rewardable {
 
     }
 
-    @Override
     public int earnPoints(Cart cart) {
         int pointsToAdd = 0;
         pointsToAdd += cart.getCartProducts().size();
-        this.setshopperPoints(this.getshopperPoints() + (pointsToAdd * employeeMultiplier));
-        return this.getshopperPoints();
+        this.setShopperPoints(this.getShopperPoints() + (pointsToAdd * 2));
+        return this.getShopperPoints();
     }
 }

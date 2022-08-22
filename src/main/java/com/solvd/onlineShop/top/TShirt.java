@@ -8,15 +8,24 @@ import org.apache.logging.log4j.Logger;
 
 public class TShirt extends ClothingProduct implements SeasonDiscountable {
 
+    private boolean hasSleeves;
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
 
-    public TShirt(String name, int sku, double price, Category category, Sizes size, String color, String type) {
+    public TShirt(String name, int sku, double price, Category category, Sizes size, String color, String type, boolean hasSleeves) {
         super(name, sku, price, category, size, color, type);
-
+        this.hasSleeves = hasSleeves;
     }
 
     public TShirt() {
+    }
+
+    public boolean getHasSleeves() {
+        return hasSleeves;
+    }
+
+    public void setHasSleeves(boolean hasSleeves) {
+        this.hasSleeves = hasSleeves;
     }
 
     @Override

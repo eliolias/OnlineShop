@@ -1,6 +1,6 @@
 package com.solvd.onlineShop.interfaces;
 
 @FunctionalInterface
-public interface Rewardable<T> {
-    int earnPoints(T o);
+public interface Returnable<T> {
+    boolean returnItem(T o);
 }

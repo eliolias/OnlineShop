@@ -1,20 +1,16 @@
 package com.solvd.onlineShop;
 
+import static com.solvd.onlineShop.utils.BottomUtils.*;
+import static com.solvd.onlineShop.utils.HeadWearUtils.*;
+import static com.solvd.onlineShop.utils.ShopUtils.*;
+import static com.solvd.onlineShop.utils.TopUtils.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.*;
-
-import static com.solvd.onlineShop.utils.bottomUtils.*;
-import static com.solvd.onlineShop.utils.headWearUtils.*;
-import static com.solvd.onlineShop.utils.shopUtils.*;
-import static com.solvd.onlineShop.utils.topUtils.*;
-
 public class Main {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
-
         top.setTopTypes(topCategories);
         bottom.setBottomTypes(bottomCategories);
         headWear.setHeadWearTypes(headWearCategories);
@@ -28,7 +24,6 @@ public class Main {
         shop.addCategory(clothing);
         bobCart.checkWishList(customerWishList);
         bob.setWishList(customerWishList);
-
 
         LOGGER.info("Welcome to " + shop.getName());
         LOGGER.info("Available product categories: " + shop.getCategories());
@@ -50,9 +45,5 @@ public class Main {
         LOGGER.info(bob.getName() + " purchased : " + bobCart.makePurchaseCart(bobCash) + " for " + bobCart.getTotalPrice() + "$");
         LOGGER.info("----------");
         LOGGER.info("Cash left: " + bobCash.getAmount());
-
-
     }
-
-
 }

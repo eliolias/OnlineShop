@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.solvd.onlineShop.utils.bottomUtils.*;
-import static com.solvd.onlineShop.utils.headWearUtils.*;
-import static com.solvd.onlineShop.utils.topUtils.*;
+import static com.solvd.onlineShop.utils.BottomUtils.*;
+import static com.solvd.onlineShop.utils.HeadWearUtils.*;
+import static com.solvd.onlineShop.utils.TopUtils.*;
 
-public class shopUtils {
-    public shopUtils(){}
+public class ShopUtils {
+    public ShopUtils(){}
     public static Shop shop = new Shop("Online Shop");
     public static Clothing clothing = new Clothing("Clothing", Seasons.SUMMER);
     public static Employee bob = new Employee("bob");

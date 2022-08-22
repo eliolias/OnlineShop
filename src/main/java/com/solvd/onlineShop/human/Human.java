@@ -3,12 +3,12 @@ package com.solvd.onlineShop.human;
 import com.solvd.onlineShop.Clothing;
 import com.solvd.onlineShop.ClothingProduct;
 import com.solvd.onlineShop.Product;
+import com.solvd.onlineShop.enums.Sizes;
 
 import java.util.*;
 
 public abstract class Human{
     private List<ClothingProduct> wishList;
-
 
     private String name;
     private boolean isEmployee;
@@ -19,7 +19,6 @@ public abstract class Human{
     public Human(String name, boolean isEmployee, int shopperPoints) {
         this.name = name;
         this.isEmployee = isEmployee;
-
         this.shopperPoints = shopperPoints;
     }
 
@@ -61,11 +60,11 @@ public abstract class Human{
         this.wishList = wishList;
     }
 
-    public int getshopperPoints() {
+    public int getShopperPoints() {
         return shopperPoints;
     }
 
-    public void setshopperPoints(int frequentShopper) {
+    public void setShopperPoints(int frequentShopper) {
         this.shopperPoints = frequentShopper;
     }
 

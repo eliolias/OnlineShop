@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class headWearUtils {
+public class HeadWearUtils {
     public static HeadWear headWear = new HeadWear("HeadWear");
-    public static Hat yankeeHat = new Hat("Yankees Hat", 11119, 15.99, headWear, Sizes.L, "Blue & White", "Baseball Hat");
-    public static Hat beenie = new Hat("Beenie", 11120, 9.99, headWear, Sizes.L, "Burgundy", "Cuffed Beenie");
+    public static Hat yankeeHat = new Hat("Yankees Hat", 11119, 15.99, headWear, Sizes.L, "Blue & White", "Baseball Hat", true);
+    public static Hat beenie = new Hat("Beenie", 11120, 9.99, headWear, Sizes.L, "Burgundy", "Cuffed Beenie", false);
     public static Sunglasses aviators = new Sunglasses("Aviator SunGlasses", 11121, 50.99, headWear, Sizes.M, "Gold & Silver", "Aviator", true);
     public static Sunglasses clubMasters = new Sunglasses("ClubMaster SunGlasses", 11122, 21.99, headWear, Sizes.L, "Black", "ClubMaster", false);
     public static List<String> headWearCategories = new ArrayList<>(Arrays.asList(yankeeHat.getType(), beenie.getType(), aviators.getType(), clubMasters.getType()));

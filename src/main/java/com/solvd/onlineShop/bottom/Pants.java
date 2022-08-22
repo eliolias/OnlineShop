@@ -7,12 +7,22 @@ import com.solvd.onlineShop.enums.Sizes;
 
 public class Pants extends ClothingProduct {
 
-    public Pants(String name, int sku, double price, Category category, Sizes size, String color, String type) {
+    private boolean beltRecommended;
+
+    public Pants(String name, int sku, double price, Category category, Sizes size, String color, String type, boolean beltRecommended) {
         super(name, sku, price, category, size, color, type);
+              this.beltRecommended = beltRecommended;
 
     }
 
     public Pants() {
     }
 
+    public boolean isBeltRecommended() {
+        return beltRecommended;
+    }
+
+    public void setBeltRecommended(boolean beltRecommended) {
+        this.beltRecommended = beltRecommended;
+    }
 }

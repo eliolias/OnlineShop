@@ -11,8 +11,7 @@ public class Shop {
     private final static Logger LOGGER = LogManager.getLogger(Shop.class);
 
     private String name;
-    private Set<Category> categories = new HashSet<Category>() {
-    };
+    private Set<Category> categories = new HashSet<Category>();
     private int inventory = 100;
 
     public Shop(String name) {

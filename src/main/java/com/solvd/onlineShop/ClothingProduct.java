@@ -1,8 +1,13 @@
 package com.solvd.onlineShop;
 
 import com.solvd.onlineShop.enums.Sizes;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ClothingProduct extends Product{
+
+    private final static Logger LOGGER = LogManager.getLogger(ClothingProduct.class);
+
     private Sizes size;
     private String color;
     private String type;
@@ -41,5 +46,11 @@ public class ClothingProduct extends Product{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void returnItem(Product product) {
+        if (product.getCategory().getName().equals("Tops") || product.getCategory().getName().equals("Bottoms") || product.getCategory().getName().equals("HeadWear")) {
+        LOGGER.info("Product returnable");
+        }
     }
 }
