@@ -1,8 +1,12 @@
 package com.solvd.onlineShop.top;
 
 import com.solvd.onlineShop.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TShirt extends ClothingProduct implements SeasonDiscountable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
 
     public TShirt(String name, int sku, double price, Category category, String size, String color, String type) {
@@ -17,7 +21,7 @@ public class TShirt extends ClothingProduct implements SeasonDiscountable {
     public void inSeasonDiscount() {
         if(this.getCategory().getCurrentSeason() == season){
             this.setPrice(this.getPrice() - discount);
-            System.out.println("In season discount for summer of 10$");
+            LOGGER.info("In season discount for summer of 10$");
         }
     }
 }

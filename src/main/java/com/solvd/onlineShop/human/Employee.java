@@ -1,14 +1,16 @@
 package com.solvd.onlineShop.human;
 
+import com.solvd.onlineShop.*;
 import com.solvd.onlineShop.payment.Payment;
-import com.solvd.onlineShop.Cart;
-import com.solvd.onlineShop.IPay;
-import com.solvd.onlineShop.Product;
-import com.solvd.onlineShop.Rewardable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 public class Employee extends Human implements IPay, Rewardable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+
     private double ratePerItem;
     private double totalPay;
 
@@ -55,9 +57,9 @@ public class Employee extends Human implements IPay, Rewardable {
         if(payment.getAmount() > cart.getTotalPrice()){
             double taxes = cart.getTotalPrice() * tax;
             payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
-            System.out.println("Employee" + this.getName() +"remaining funds: " + payment.getAmount());
+            LOGGER.info("Employee" + this.getName() +"remaining funds: " + payment.getAmount());
         }
-        System.out.println("Insufficient funds");
+        LOGGER.info("Insufficient funds");
 
     }
 

@@ -1,11 +1,13 @@
 package com.solvd.onlineShop.headWear;
 
-import com.solvd.onlineShop.Category;
-import com.solvd.onlineShop.ClothingProduct;
-import com.solvd.onlineShop.Warrantable;
-import com.solvd.onlineShop.Product;
+import com.solvd.onlineShop.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Sunglasses extends ClothingProduct implements Warrantable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Sunglasses.class);
+
 
     private Boolean isPolarized;
 
@@ -33,13 +35,13 @@ public class Sunglasses extends ClothingProduct implements Warrantable {
     }
 
     public void addWarranty(){
-        System.out.println("Sunglasses Warranty purchased for: " + warrantyPrice());
+        LOGGER.info("Sunglasses Warranty purchased for: " + warrantyPrice());
         this.setPrice(this.getPrice() + warrantyPrice());
     }
 
     @Override
     public String warrantyPolicy() {
-        System.out.println("Warranty on sunglasses covers scratches, breaks, and loss of sunglasses as long as un-intentional.");
+        LOGGER.info("Warranty on sunglasses covers scratches, breaks, and loss of sunglasses as long as un-intentional.");
         return null;
     }
 }

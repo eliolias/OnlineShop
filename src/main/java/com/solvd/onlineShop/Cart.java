@@ -1,11 +1,16 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.payment.Cash;
 import com.solvd.onlineShop.payment.Coupon;
 import com.solvd.onlineShop.payment.Payment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 public class Cart implements Inventory {
+
+    private final static Logger LOGGER = LogManager.getLogger(Cart.class);
     private List<Product> cartProducts = new ArrayList<>();
     private double totalPrice;
 
@@ -21,7 +26,7 @@ public class Cart implements Inventory {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -55,7 +60,9 @@ public class Cart implements Inventory {
             productsPurchased.add(product.getName() + "-" + product.getPrice() + "$");
         }
         if (payment.getType().equals("Cash")) {
-            this.cashDiscount();
+            Cash cash = new Cash();
+            cash.setAmount(payment.getAmount());
+            cash.cashDiscount(this);
         }
         payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
@@ -71,11 +78,11 @@ public class Cart implements Inventory {
                 this.addToCart(product);
                 addedToCart.add(product.getName());
             } else {
-                System.out.println("No matching items found.");
+                LOGGER.info("No matching items found.");
             }
         }
         if (addedToCart.size() != 0) {
-            System.out.println("Added items from wishlist to cart: " + addedToCart);
+            LOGGER.info("Added items from wishlist to cart: " + addedToCart);
         }
     }
 
@@ -83,14 +90,14 @@ public class Cart implements Inventory {
         if(cartProducts == null || cartProducts.isEmpty()){
             throw new CartException("Invalid cart. Cart is empty.");
         }
-        System.out.println("Valid Cart.");
+        LOGGER.info("Valid Cart.");
     }
 
     public void checkWishList(List<ClothingProduct> wishList) {
         if(wishList.isEmpty()){
             throw new WishListException("Invalid Wishlist. Wishlist is empty.");
         }
-        System.out.println("Valid Wishlist.");
+        LOGGER.info("Valid Wishlist.");
     }
 
 
@@ -98,10 +105,10 @@ public class Cart implements Inventory {
         if (coupon.isPercent()) {
             double discount = totalPrice * coupon.getAmount();
             totalPrice -= discount;
-            System.out.println("Coupon: " + (coupon.getAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
+            LOGGER.info("Coupon: " + (coupon.getAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
         } else {
             totalPrice -= coupon.getAmount();
-            System.out.println("Coupon discount amount: " + coupon.getAmount() + "$");
+            LOGGER.info("Coupon discount amount: " + coupon.getAmount() + "$");
         }
     }
 
@@ -110,12 +117,12 @@ public class Cart implements Inventory {
             if (coupon.getAmount() > 0.99) {
                 throw new CouponException("Invalid Coupon");
             }
-            System.out.println("Valid Coupon");
+            LOGGER.info("Valid Coupon");
         } else {
             if (coupon.getAmount() > 100) {
                 throw new CouponException("Invalid Coupon");
             }
-            System.out.println("Valid Coupon");
+            LOGGER.info("Valid Coupon");
         }
     }
 
@@ -123,15 +130,15 @@ public class Cart implements Inventory {
         if (isEmployee) {
             double discount = totalPrice * 0.20;
             totalPrice -= discount;
-            System.out.println("Employee discount: " + discount + "$");
+            LOGGER.info("Employee discount: " + discount + "$");
         }
     }
 
-    public void cashDiscount() {
+/*    public void cashDiscount() {
         double discount = totalPrice * 0.05;
         totalPrice -= discount;
-        System.out.println("Purchased with Cash | Cash discount amount: " + discount + "$");
-    }
+        LOGGER.info("Purchased with Cash | Cash discount amount: " + discount + "$");
+    }*/
 
     @Override
     public int addInventory(int invToAdd, Shop shop) {
