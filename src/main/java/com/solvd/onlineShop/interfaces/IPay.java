@@ -1,5 +1,6 @@
-package com.solvd.onlineShop;
+package com.solvd.onlineShop.interfaces;
 
+import com.solvd.onlineShop.Cart;
 import com.solvd.onlineShop.payment.Payment;
 
 public interface IPay {

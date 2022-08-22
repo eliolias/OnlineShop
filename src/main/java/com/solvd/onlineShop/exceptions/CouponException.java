@@ -1,4 +1,4 @@
-package com.solvd.onlineShop;
+package com.solvd.onlineShop.exceptions;
 
 public class CouponException extends RuntimeException {
 
