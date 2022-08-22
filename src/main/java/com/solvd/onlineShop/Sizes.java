@@ -13,4 +13,7 @@ public enum Sizes {
         this.size = size;
     }
 
+    public String getSize() {
+        return size;
+    }
 }

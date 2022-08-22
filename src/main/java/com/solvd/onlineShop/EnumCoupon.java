@@ -11,4 +11,7 @@ public enum EnumCoupon {
         this.percent = percent;
     }
 
+    public double getPercent() {
+        return percent;
+    }
 }

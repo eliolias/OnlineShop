@@ -11,4 +11,8 @@ public enum Seasons {
     Seasons(String season){
         this.season = season;
     }
+
+    public String getSeason() {
+        return season;
+    }
 }
