@@ -1,5 +1,9 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.exceptions.CartException;
+import com.solvd.onlineShop.exceptions.CouponException;
+import com.solvd.onlineShop.exceptions.WishListException;
+import com.solvd.onlineShop.interfaces.Inventory;
 import com.solvd.onlineShop.payment.Cash;
 import com.solvd.onlineShop.payment.Coupon;
 import com.solvd.onlineShop.payment.Payment;
@@ -11,10 +15,11 @@ import java.util.*;
 public class Cart implements Inventory {
 
     private final static Logger LOGGER = LogManager.getLogger(Cart.class);
-    private List<Product> cartProducts = new ArrayList<>();
+    private HashMap<String, Double> cartProducts = new HashMap<String, Double>();
+    private SortedMap<String, Double> sortedCartProducts = new TreeMap<String, Double>();
     private double totalPrice;
 
-    public Cart(List<Product> cartProducts, int totalPrice) {
+    public Cart(HashMap<String, Double> cartProducts, int totalPrice) {
         this.cartProducts = cartProducts;
         this.totalPrice = totalPrice;
     }
@@ -30,35 +35,37 @@ public class Cart implements Inventory {
         this.totalPrice = totalPrice;
     }
 
-    public List<Product> getCartProducts() {
+
+    public HashMap<String, Double> getCartProducts() {
         return cartProducts;
     }
 
-    public void setCartProducts(List<Product> cartProducts) {
+    public void setCartProducts(HashMap<String, Double> cartProducts) {
         this.cartProducts = cartProducts;
     }
 
+    public SortedMap<String, Double> getSortedCartProducts() {
+        return sortedCartProducts;
+    }
+
+    public void setSortedCartProducts(SortedMap<String, Double> sortedCartProducts) {
+        this.sortedCartProducts = sortedCartProducts;
+    }
+
     public void aggregateTotalPrice() {
-        for (Product product : cartProducts) {
-            totalPrice += product.getPrice();
+        for (double i : cartProducts.values()) {
+            totalPrice += i;
         }
     }
 
     public void addToCart(Product product) {
-        cartProducts.add(product);
+        cartProducts.put(product.getName(), product.getPrice());
     }
 
 
-    public void removeFromCart(Product product) {
-        cartProducts.remove(product);
-    }
-
-
-    public List<String> makePurchase(Payment payment) {
+    public List<String> makePurchaseCart(Payment payment) {
         List<String> productsPurchased = new ArrayList<>();
-        for (Product product : cartProducts) {
-            productsPurchased.add(product.getName() + "-" + product.getPrice() + "$");
-        }
+        cartProducts.forEach((key, value) -> productsPurchased.add(key + "-" + value + "$"));
         if (payment.getType().equals("Cash")) {
             Cash cash = new Cash();
             cash.setAmount(payment.getAmount());
@@ -68,33 +75,50 @@ public class Cart implements Inventory {
         return productsPurchased;
     }
 
-    //Need to refactor this, many methods need to moved to soon to be created Order Class.
     public void addWishListToCart(List<ClothingProduct> wishlist) {
-        List<String> addedToCart = new ArrayList<>();
+        List<String> addedToHashCart = new ArrayList<>();
         for (Product product : wishlist) {
             product.checkProduct(product);
             int sku = product.getSku();
-            if (sku == 11111 || sku == 11112 || sku == 11113 || sku == 11114 || sku == 11115 || sku == 11116 || sku == 11117 || sku == 11118 || sku == 11119 || sku == 11120 || sku == 11121 || sku == 11122) {
+            if (sku >= 11111 && sku <= 11122) {
                 this.addToCart(product);
-                addedToCart.add(product.getName());
+                addedToHashCart.add(product.getName());
             } else {
                 LOGGER.info("No matching items found.");
             }
         }
-        if (addedToCart.size() != 0) {
-            LOGGER.info("Added items from wishlist to cart: " + addedToCart);
+        if (addedToHashCart.size() != 0) {
+            LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
         }
     }
 
-    public void checkCart(List<Product> cartProducts) {
-        if(cartProducts == null || cartProducts.isEmpty()){
+    //this refactor with forEach is not working properly
+    public void addWishListToCart2(List<ClothingProduct> wishlist) {
+        List<String> addedToHashCart = new ArrayList<>();
+        wishlist.forEach(product -> {
+            if (product.checkProduct(product)) {
+                int sku = product.getSku();
+                if(sku >= 11111 && sku <= 11122){
+                    this.addToCart(product);
+                    addedToHashCart.add(product.getName());
+                }
+            } else {
+                LOGGER.info("No matching items found");
+            }
+            if (addedToHashCart.size() != 0) {
+                LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
+            }
+        });
+    }
+    public void checkCart(HashMap<String, Double> cartProducts) {
+        if (cartProducts == null || cartProducts.isEmpty()) {
             throw new CartException("Invalid cart. Cart is empty.");
         }
         LOGGER.info("Valid Cart.");
     }
 
     public void checkWishList(List<ClothingProduct> wishList) {
-        if(wishList.isEmpty()){
+        if (wishList.isEmpty()) {
             throw new WishListException("Invalid Wishlist. Wishlist is empty.");
         }
         LOGGER.info("Valid Wishlist.");
@@ -103,12 +127,12 @@ public class Cart implements Inventory {
 
     public void applyCoupon(Coupon coupon) {
         if (coupon.isPercent()) {
-            double discount = totalPrice * coupon.getAmount();
+            double discount = totalPrice * coupon.getCouponAmount();
             totalPrice -= discount;
-            LOGGER.info("Coupon: " + (coupon.getAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
+            LOGGER.info("Coupon: " + (coupon.getCouponAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
         } else {
-            totalPrice -= coupon.getAmount();
-            LOGGER.info("Coupon discount amount: " + coupon.getAmount() + "$");
+            totalPrice -= coupon.getCouponAmount();
+            LOGGER.info("Coupon discount amount: " + coupon.getCouponAmount() + "$");
         }
     }
 
@@ -133,12 +157,10 @@ public class Cart implements Inventory {
             LOGGER.info("Employee discount: " + discount + "$");
         }
     }
-
-/*    public void cashDiscount() {
-        double discount = totalPrice * 0.05;
-        totalPrice -= discount;
-        LOGGER.info("Purchased with Cash | Cash discount amount: " + discount + "$");
-    }*/
+    //Sorting alphabetically for now, may change to by price later
+    public void sortCart(){
+        sortedCartProducts.putAll(cartProducts);
+    }
 
     @Override
     public int addInventory(int invToAdd, Shop shop) {
@@ -148,9 +170,7 @@ public class Cart implements Inventory {
 
     @Override
     public int subtractInventory(Shop shop) {
-        for (Product product : cartProducts) {
-            shop.setInventory(shop.getInventory() - 1);
-        }
+        shop.setInventory(shop.getInventory() - cartProducts.size());
         return shop.getInventory();
     }
 }

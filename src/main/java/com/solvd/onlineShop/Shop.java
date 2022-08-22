@@ -1,5 +1,6 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.exceptions.CategoriesException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +11,8 @@ public class Shop {
     private final static Logger LOGGER = LogManager.getLogger(Shop.class);
 
     private String name;
-    private List<Category> categories = new ArrayList<>();
+    private Set<Category> categories = new HashSet<Category>() {
+    };
     private int inventory = 100;
 
     public Shop(String name) {
@@ -38,11 +40,11 @@ public class Shop {
         this.inventory = inventory;
     }
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 
@@ -62,7 +64,7 @@ public class Shop {
         categories.removeAll(categoriesToRemove);
     }
 
-    public void checkCategories(List<Clothing> categories) throws CategoriesException{
+    public void checkCategories(List<Clothing> categories) throws CategoriesException {
         if(categories.isEmpty()){
             throw new CategoriesException("Empty list of categories. Invalid");
         }

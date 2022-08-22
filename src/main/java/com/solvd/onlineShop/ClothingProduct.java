@@ -1,11 +1,13 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.enums.Sizes;
+
 public class ClothingProduct extends Product{
-    private String size;
+    private Sizes size;
     private String color;
     private String type;
 
-    public ClothingProduct(String name, int sku, double price, Category category, String size, String color, String type){
+    public ClothingProduct(String name, int sku, double price, Category category, Sizes size, String color, String type){
         super(name, sku, price, category);
         this.size = size;
         this.color = color;
@@ -17,11 +19,11 @@ public class ClothingProduct extends Product{
 
     }
 
-    public String getSize() {
+    public Sizes getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Sizes size) {
         this.size = size;
     }
 

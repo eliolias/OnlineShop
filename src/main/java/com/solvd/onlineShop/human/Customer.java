@@ -1,6 +1,8 @@
 package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.*;
+import com.solvd.onlineShop.interfaces.IPay;
+import com.solvd.onlineShop.interfaces.Rewardable;
 import com.solvd.onlineShop.payment.Payment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,9 +44,7 @@ public class Customer extends Human implements IPay, Rewardable {
     @Override
     public int earnPoints(Cart cart) {
         int pointsToAdd = 0;
-        for(Product product: cart.getCartProducts()){
-            pointsToAdd++;
-        }
+        pointsToAdd += cart.getCartProducts().size();
         this.setshopperPoints(this.getshopperPoints() + pointsToAdd);
         return this.getshopperPoints();
     }

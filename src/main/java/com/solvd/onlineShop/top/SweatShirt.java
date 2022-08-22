@@ -2,13 +2,13 @@ package com.solvd.onlineShop.top;
 
 import com.solvd.onlineShop.Category;
 import com.solvd.onlineShop.ClothingProduct;
-import com.solvd.onlineShop.Product;
+import com.solvd.onlineShop.enums.Sizes;
 
 public class SweatShirt extends ClothingProduct {
 
     private Boolean hasHood;
 
-    public SweatShirt(String name, int sku, double price, Category category, String size, String color, String type, Boolean hasHood) {
+    public SweatShirt(String name, int sku, double price, Category category, Sizes size, String color, String type, Boolean hasHood) {
         super(name, sku, price, category, size, color, type);
 
         this.hasHood = hasHood;

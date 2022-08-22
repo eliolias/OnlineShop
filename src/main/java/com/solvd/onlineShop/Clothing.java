@@ -1,16 +1,18 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.enums.Seasons;
+
 import java.util.*;
 
 public class Clothing extends Category {
 
-    private String currentSeason;
+    private Seasons currentSeason;
 
     private List<Clothing> clothingCategories;
 
 
-    public Clothing(String name, List<Clothing> clothingCategories, String currentSeason) {
-        super(name);
+    public Clothing(String name, List<Clothing> clothingCategories, Seasons currentSeason) {
+        super(name, currentSeason);
         this.currentSeason = currentSeason;
         this.clothingCategories = clothingCategories;
     }
@@ -19,7 +21,7 @@ public class Clothing extends Category {
 
     }
 
-    public Clothing(String name, String currentSeason) {
+    public Clothing(String name, Seasons currentSeason) {
         super(name);
         this.currentSeason = currentSeason;
     }
@@ -32,11 +34,11 @@ public class Clothing extends Category {
 
     }
 
-    public String getCurrentSeason() {
+    public Seasons getCurrentSeason() {
         return currentSeason;
     }
 
-    public void setCurrentSeason(String currentSeason) {
+    public void setCurrentSeason(Seasons currentSeason) {
         this.currentSeason = currentSeason;
     }
 

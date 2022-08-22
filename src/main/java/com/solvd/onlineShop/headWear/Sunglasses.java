@@ -1,6 +1,8 @@
 package com.solvd.onlineShop.headWear;
 
 import com.solvd.onlineShop.*;
+import com.solvd.onlineShop.enums.Sizes;
+import com.solvd.onlineShop.interfaces.Warrantable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +13,7 @@ public class Sunglasses extends ClothingProduct implements Warrantable {
 
     private Boolean isPolarized;
 
-    public Sunglasses(String name, int sku, double price, Category category, String size, String color, String type, Boolean isPolarized) {
+    public Sunglasses(String name, int sku, double price, Category category, Sizes size, String color, String type, Boolean isPolarized) {
         super(name, sku, price, category, size, color, type);
 
         this.isPolarized = isPolarized;

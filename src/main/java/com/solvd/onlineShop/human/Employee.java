@@ -1,6 +1,8 @@
 package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.*;
+import com.solvd.onlineShop.interfaces.IPay;
+import com.solvd.onlineShop.interfaces.Rewardable;
 import com.solvd.onlineShop.payment.Payment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,6 +19,7 @@ public class Employee extends Human implements IPay, Rewardable {
     public Employee(String name, boolean isEmployee, List<String> sizes, int frequentShopperPoints) {
         super(name, true, frequentShopperPoints);
     }
+
     public Employee(String name, boolean isEmployee, double totalPay, List<String> sizes) {
         super(name, true);
         this.totalPay = totalPay;
@@ -54,10 +57,10 @@ public class Employee extends Human implements IPay, Rewardable {
 
     @Override
     public void pay(Payment payment, Cart cart) {
-        if(payment.getAmount() > cart.getTotalPrice()){
+        if (payment.getAmount() > cart.getTotalPrice()) {
             double taxes = cart.getTotalPrice() * tax;
             payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
-            LOGGER.info("Employee" + this.getName() +"remaining funds: " + payment.getAmount());
+            LOGGER.info("Employee" + this.getName() + "remaining funds: " + payment.getAmount());
         }
         LOGGER.info("Insufficient funds");
 
@@ -66,9 +69,7 @@ public class Employee extends Human implements IPay, Rewardable {
     @Override
     public int earnPoints(Cart cart) {
         int pointsToAdd = 0;
-        for(Product product: cart.getCartProducts()){
-            pointsToAdd++;
-        }
+        pointsToAdd += cart.getCartProducts().size();
         this.setshopperPoints(this.getshopperPoints() + (pointsToAdd * employeeMultiplier));
         return this.getshopperPoints();
     }

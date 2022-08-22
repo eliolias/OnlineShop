@@ -1,7 +1,7 @@
 package com.solvd.onlineShop.exceptions;
 
 public class CategoriesException extends RuntimeException {
-    CategoriesException(String message) {
+    public CategoriesException(String message) {
         super(message);
     }
 

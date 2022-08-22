@@ -1,17 +1,20 @@
 package com.solvd.onlineShop.enums;
 
 public enum EnumCoupon {
-    TEN (.10),
-    TWENTY (.20),
-    THIRTY (.30),
-    FIFTY (.50);
-
-    private final double percent;
-    EnumCoupon(double percent){
-        this.percent = percent;
+    TENPERCENT (.10),
+    TWENTYPERCENT (.20),
+    THIRTYPERCENT (.30),
+    FIFTYPERCENT (.50),
+    TENDOLLARS (10),
+    TWENTYDOLLARS (20),
+    THIRTYDOLLARS (30),
+    FIFTYDOLLARS (50);
+    private final double amount;
+    EnumCoupon(double amount){
+        this.amount = amount;
     }
 
-    public double getPercent() {
-        return percent;
+    public double getAmount() {
+        return amount;
     }
 }

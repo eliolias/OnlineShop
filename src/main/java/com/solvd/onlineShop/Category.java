@@ -1,5 +1,7 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.enums.Seasons;
+import com.solvd.onlineShop.exceptions.CategoriesException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,16 +13,16 @@ public abstract class Category {
 
     private String name;
     private List<Product> products;
-    private String currentSeason;
+    private Seasons currentSeason;
 
 
-    public Category(String name, List<Product> products, String currentSeason) {
+    public Category(String name, List<Product> products, Seasons currentSeason) {
         this.name = name;
         this.products = products;
         this.currentSeason = currentSeason;
     }
 
-    public Category(String name, String currentSeason) {
+    public Category(String name, Seasons currentSeason) {
         this.name = name;
         this.currentSeason = currentSeason;
     }
@@ -49,11 +51,11 @@ public abstract class Category {
         this.products = products;
     }
 
-    public String getCurrentSeason() {
+    public Seasons getCurrentSeason() {
         return currentSeason;
     }
 
-    public void setCurrentSeason(String currentSeason) {
+    public void setCurrentSeason(Seasons currentSeason) {
         this.currentSeason = currentSeason;
     }
 

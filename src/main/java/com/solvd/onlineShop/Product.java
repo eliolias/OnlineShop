@@ -1,5 +1,7 @@
 package com.solvd.onlineShop;
 
+import com.solvd.onlineShop.exceptions.ProductsException;
+
 public abstract class Product {
     private String name;
     private int sku;
@@ -45,9 +47,11 @@ public abstract class Product {
         return category;
     }
 
-    public void checkProduct(Product product){
+    public boolean checkProduct(Product product){
         if(product == null){
             throw new ProductsException("Invalid Product");
+        } else {
+            return true;
         }
     }
 

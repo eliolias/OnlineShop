@@ -1,7 +1,7 @@
 package com.solvd.onlineShop.exceptions;
 
 public class WishListException extends RuntimeException{
-    WishListException(String message){
+    public WishListException(String message){
         super(message);
     }
 }
