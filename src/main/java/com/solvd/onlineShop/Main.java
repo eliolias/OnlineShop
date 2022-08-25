@@ -1,29 +1,33 @@
 package com.solvd.onlineShop;
 
-import static com.solvd.onlineShop.utils.BottomUtils.*;
-import static com.solvd.onlineShop.utils.HeadWearUtils.*;
 import static com.solvd.onlineShop.utils.ShopUtils.*;
-import static com.solvd.onlineShop.utils.TopUtils.*;
 
+import com.solvd.onlineShop.threads.BottomRunnable;
+import com.solvd.onlineShop.threads.HeadWearRunnable;
+import com.solvd.onlineShop.threads.TopRunnable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class Main {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
-        top.setTopTypes(topCategories);
-        bottom.setBottomTypes(bottomCategories);
-        headWear.setHeadWearTypes(headWearCategories);
-        allProducts.addAll(clothingTopProducts);
-        allProducts.addAll(clothingBottomProducts);
-        allProducts.addAll(clothingHeadWearProducts);
-        shop.checkCategories(shopCategories);
-        clothing.checkCategories(clothingCategories);
-        clothing.setProducts(allProducts);
-        clothing.setClothingCategories(clothingCategories);
-        shop.addCategory(clothing);
+        TopRunnable runnable1 = new TopRunnable();
+        BottomRunnable runnable2 = new BottomRunnable();
+        HeadWearRunnable runnable3 = new HeadWearRunnable();
+        Thread thread1 = new Thread(runnable1);
+        Thread thread2 = new Thread(runnable2);
+        Thread thread3 = new Thread(runnable3);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+
         bobCart.checkWishList(customerWishList);
         bob.setWishList(customerWishList);
+        shop.checkCategories(shopCategories);
+        clothing.checkCategories(clothingCategories);
+        clothing.setClothingCategories(clothingCategories);
+        clothing.setProducts(allProducts);
+        shop.addCategory(clothing);
 
         LOGGER.info("Welcome to " + shop.getName());
         LOGGER.info("Available product categories: " + shop.getCategories());

@@ -18,7 +18,7 @@ public class Shorts extends ClothingProduct implements SeasonDiscountable {
         this.forSwimming = forSwimming;
     }
 
-    public Shorts(String cargo_shorts, int sku, double price, Bottom bottom, Sizes m, String dark_green, String khaki_cargo_shorts, boolean forSwimming) {
+    public Shorts() {
     }
 
 
@@ -29,8 +29,6 @@ public class Shorts extends ClothingProduct implements SeasonDiscountable {
     public void setForSwimming(boolean forSwimming) {
         this.forSwimming = forSwimming;
     }
-
-    //This should probably not be implemented here
     @Override
     public void inSeasonDiscount() {
         if(this.getCategory().getCurrentSeason().equals(Seasons.SUMMER)){
