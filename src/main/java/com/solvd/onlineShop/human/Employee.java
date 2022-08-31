@@ -1,7 +1,6 @@
 package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.*;
-import com.solvd.onlineShop.enums.Sizes;
 import com.solvd.onlineShop.interfaces.IPay;
 import com.solvd.onlineShop.interfaces.Rewardable;
 import com.solvd.onlineShop.payment.Payment;
@@ -36,6 +35,7 @@ public class Employee extends Human {
 
     }
 
+
     public double getRatePerItem() {
         return ratePerItem;
     }
@@ -52,24 +52,22 @@ public class Employee extends Human {
         this.totalPay = totalPay;
     }
 
-    public void payForOrder() {
-        //implement cost of employee to package X items
-    }
+    public Rewardable<Cart> earnPoints = ((Cart cart) -> {
+        int pointsToAdd = 0;
+        pointsToAdd += cart.getCartProducts().size();
+        this.setShopperPoints(this.getShopperPoints() + pointsToAdd);
+        LOGGER.info("Shopper reward points received: " + this.getShopperPoints()  + " points");
+        return this.getShopperPoints();
+    });
 
-    public void pay(Payment payment, Cart cart) {
+    public IPay<Payment, Cart> pay = ((Payment payment, Cart cart) -> {
         if (payment.getAmount() > cart.getTotalPrice()) {
             double taxes = cart.getTotalPrice() * 0.185;
             payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
-            LOGGER.info("Employee" + this.getName() + "remaining funds: " + payment.getAmount());
+            LOGGER.info("Taxes on purchase: +$" + taxes);
+            LOGGER.info("Employee " + this.getName() + " remaining funds: $" + payment.getAmount());
+        } else {
+            LOGGER.info("Insufficient funds");
         }
-        LOGGER.info("Insufficient funds");
-
-    }
-
-    public int earnPoints(Cart cart) {
-        int pointsToAdd = 0;
-        pointsToAdd += cart.getCartProducts().size();
-        this.setShopperPoints(this.getShopperPoints() + (pointsToAdd * 2));
-        return this.getShopperPoints();
-    }
+    });
 }

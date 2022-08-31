@@ -34,7 +34,7 @@ public class Main {
         LOGGER.info("Available clothing product categories: " + clothing.getClothingCategories());
         LOGGER.info("Products available in " + clothing.getName() + " category :" + clothing.getProducts());
         LOGGER.info(bob.getName() + "'s wishlist: " + bob.getWishList());
-        bobCart.addWishListToCart(bob.getWishList());
+        bobCart.addWishListToCart2(bob.getWishList());
         bobCart.aggregateTotalPrice();
         LOGGER.info("Cart total Price: " + bobCart.getTotalPrice() + "$");
         bobCart.applyEmployeeDiscount(bob.isEmployee());
@@ -42,12 +42,16 @@ public class Main {
         bobCart.checkCoupon(bobCoupon);
         bobCart.applyCoupon(bobCoupon);
         LOGGER.info("----------");
-        bobCart.sortCart();
-        LOGGER.info("Products in cart: " + bobCart.getSortedCartProducts());
+        LOGGER.info("Products in cart: " + bobCart.getCartProducts());
         LOGGER.info("Cart total Price with discounts: " + bobCart.getTotalPrice() + "$");
         LOGGER.info("----------");
         LOGGER.info(bob.getName() + " purchased : " + bobCart.makePurchaseCart(bobCash) + " for " + bobCart.getTotalPrice() + "$");
-        LOGGER.info("----------");
-        LOGGER.info("Cash left: " + bobCash.getAmount());
+        bob.earnPoints.earnPoints(bobCart);
+        bob.pay.pay(bobCash, bobCart);
+
+        //Testing returnable interface
+        //customerWishList.forEach(clothingProduct -> clothingProduct.returnItem.returnItem(clothingProduct));
+
+
     }
 }

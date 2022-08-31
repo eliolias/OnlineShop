@@ -1,6 +1,8 @@
 package com.solvd.onlineShop.human;
 
 import com.solvd.onlineShop.*;
+import com.solvd.onlineShop.interfaces.IPay;
+import com.solvd.onlineShop.interfaces.Rewardable;
 import com.solvd.onlineShop.payment.Payment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,21 +30,22 @@ public class Customer extends Human {
     public Customer() {
     }
 
-
-    public void pay(Payment payment, Cart cart) {
-        if(payment.getAmount() > cart.getTotalPrice()){
-            double taxes = cart.getTotalPrice() * 0.185;
-            payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
-            LOGGER.info("Customer" + this.getName() + "Remaining funds: " + payment.getAmount());
-        }
-        LOGGER.info("Insufficient funds");
-
-    }
-
-    public int earnPoints(Cart cart) {
+    public Rewardable<Cart> earnPoints = ((Cart cart) -> {
         int pointsToAdd = 0;
         pointsToAdd += cart.getCartProducts().size();
-        this.setShopperPoints(this.getShopperPoints() + pointsToAdd);
+        LOGGER.info("Shopper reward points received: " + this.getShopperPoints()  + " points");
         return this.getShopperPoints();
-    }
+    });
+
+    public IPay<Payment, Cart> pay = ((Payment payment, Cart cart) -> {
+        if (payment.getAmount() > cart.getTotalPrice()) {
+            double taxes = cart.getTotalPrice() * 0.185;
+            payment.setAmount(payment.getAmount() - (cart.getTotalPrice() + taxes));
+            LOGGER.info("Taxes on purchase: +$" + taxes);
+            LOGGER.info("Customer " + this.getName() + " remaining funds: $" + payment.getAmount());
+        } else {
+            LOGGER.info("Insufficient funds");
+        }
+    });
+
 }

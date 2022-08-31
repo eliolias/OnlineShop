@@ -1,8 +1,13 @@
 package com.solvd.onlineShop;
 
 import com.solvd.onlineShop.exceptions.ProductsException;
+import com.solvd.onlineShop.interfaces.Returnable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class Product {
+
+    private final static Logger LOGGER = LogManager.getLogger(ClothingProduct.class);
     private String name;
     private int sku;
     private double price;
@@ -63,5 +68,11 @@ public abstract class Product {
     public String toString() {
         return this.name + " - " + this.price + "$";
     }
+
+    public Returnable<Product> returnItem = ((Product product) -> {
+        if (product.getCategory().getName().equals("Tops") || product.getCategory().getName().equals("Bottoms") || product.getCategory().getName().equals("HeadWear")) {
+            LOGGER.info(product.getName() + "Product returnable");
+        }
+    });
 
 }

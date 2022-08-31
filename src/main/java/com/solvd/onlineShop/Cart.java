@@ -16,7 +16,6 @@ public class Cart implements Inventory {
 
     private final static Logger LOGGER = LogManager.getLogger(Cart.class);
     private HashMap<String, Double> cartProducts = new HashMap<String, Double>();
-    private SortedMap<String, Double> sortedCartProducts = new TreeMap<String, Double>();
     private double totalPrice;
 
     public Cart(HashMap<String, Double> cartProducts, int totalPrice) {
@@ -44,13 +43,6 @@ public class Cart implements Inventory {
         this.cartProducts = cartProducts;
     }
 
-    public SortedMap<String, Double> getSortedCartProducts() {
-        return sortedCartProducts;
-    }
-
-    public void setSortedCartProducts(SortedMap<String, Double> sortedCartProducts) {
-        this.sortedCartProducts = sortedCartProducts;
-    }
 
     public void aggregateTotalPrice() {
         for (double i : cartProducts.values()) {
@@ -71,28 +63,9 @@ public class Cart implements Inventory {
             cash.setAmount(payment.getAmount());
             cash.cashDiscount(this);
         }
-        payment.setAmount(payment.getAmount() - getTotalPrice());
         return productsPurchased;
     }
 
-    public void addWishListToCart(List<ClothingProduct> wishlist) {
-        List<String> addedToHashCart = new ArrayList<>();
-        for (Product product : wishlist) {
-            product.checkProduct(product);
-            int sku = product.getSku();
-            if (sku >= 11111 && sku <= 11122) {
-                this.addToCart(product);
-                addedToHashCart.add(product.getName());
-            } else {
-                LOGGER.info("No matching items found.");
-            }
-        }
-        if (addedToHashCart.size() != 0) {
-            LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
-        }
-    }
-
-    //this refactor with forEach is not working properly
     public void addWishListToCart2(List<ClothingProduct> wishlist) {
         List<String> addedToHashCart = new ArrayList<>();
         wishlist.forEach(product -> {
@@ -105,10 +78,10 @@ public class Cart implements Inventory {
             } else {
                 LOGGER.info("No matching items found");
             }
-            if (addedToHashCart.size() != 0) {
-                LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
-            }
         });
+        if (addedToHashCart.size() != 0) {
+            LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
+        }
     }
     public void checkCart(HashMap<String, Double> cartProducts) {
         if (cartProducts == null || cartProducts.isEmpty()) {
@@ -156,10 +129,6 @@ public class Cart implements Inventory {
             totalPrice -= discount;
             LOGGER.info("Employee discount: " + discount + "$");
         }
-    }
-    //Sorting alphabetically for now, may change to by price later
-    public void sortCart(){
-        sortedCartProducts.putAll(cartProducts);
     }
 
     @Override

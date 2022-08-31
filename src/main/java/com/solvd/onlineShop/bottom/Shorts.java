@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 public class Shorts extends ClothingProduct implements SeasonDiscountable {
 
     private final static Logger LOGGER = LogManager.getLogger(Shorts.class);
-    boolean forSwimming;
+    private boolean forSwimming;
 
     public Shorts(String name, int sku, double price, Category category, Sizes size, String color, String type, boolean forSwimming) {
         super(name, sku, price, category, size, color, type);
