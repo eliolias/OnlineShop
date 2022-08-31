@@ -6,10 +6,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+import static com.solvd.onlineShop.Clothing.clothing;
+
 public class Shop {
 
     private final static Logger LOGGER = LogManager.getLogger(Shop.class);
 
+    public static Shop shop = new Shop("Online Shop");
+    public static List<Clothing> shopCategories = new ArrayList<>(Arrays.asList(clothing));
     private String name;
     private Set<Category> categories = new HashSet<Category>();
     private int inventory = 100;

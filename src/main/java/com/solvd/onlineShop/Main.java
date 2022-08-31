@@ -1,5 +1,8 @@
 package com.solvd.onlineShop;
 
+import static com.solvd.onlineShop.Clothing.clothing;
+import static com.solvd.onlineShop.Shop.shop;
+import static com.solvd.onlineShop.Shop.shopCategories;
 import static com.solvd.onlineShop.utils.ShopUtils.*;
 
 import com.solvd.onlineShop.threads.BottomRunnable;

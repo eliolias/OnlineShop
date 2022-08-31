@@ -1,7 +1,6 @@
 package com.solvd.onlineShop.threads;
 
-import static com.solvd.onlineShop.utils.BottomUtils.*;
-import static com.solvd.onlineShop.utils.ShopUtils.allProducts;
+import static com.solvd.onlineShop.utils.ShopUtils.*;
 
 public class BottomRunnable implements Runnable {
     @Override

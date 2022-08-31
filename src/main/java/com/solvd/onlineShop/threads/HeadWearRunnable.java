@@ -1,7 +1,6 @@
 package com.solvd.onlineShop.threads;
 
-import static com.solvd.onlineShop.utils.HeadWearUtils.*;
-import static com.solvd.onlineShop.utils.ShopUtils.allProducts;
+import static com.solvd.onlineShop.utils.ShopUtils.*;
 
 public class HeadWearRunnable  implements Runnable{
     @Override
