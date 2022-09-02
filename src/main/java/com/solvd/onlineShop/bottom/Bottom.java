@@ -6,7 +6,7 @@ import com.solvd.onlineShop.Product;
 import java.util.*;
 
 public class Bottom extends Clothing {
-
+    private static final Bottom bottom = new Bottom("Bottoms");
     private List<String> bottomTypes = new ArrayList<>();
 
     public Bottom(String name, List<Product> products, List<String> bottomTypes) {
@@ -23,6 +23,10 @@ public class Bottom extends Clothing {
     }
 
     public Bottom() {
+    }
+
+    public static Bottom getBottom() {
+        return bottom;
     }
 
     public List<String> getBottomTypes() {

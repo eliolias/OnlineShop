@@ -5,8 +5,10 @@ import com.solvd.onlineShop.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Card extends Payment {
+import static com.solvd.onlineShop.utils.ShopUtils.getRandomNumber;
 
+public class Card extends Payment {
+    public static Card card = new Card(getRandomNumber(1000, 5000), "Card");
     private double fee = 0.025;
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 

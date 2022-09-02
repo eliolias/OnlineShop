@@ -47,5 +47,8 @@ public class ClothingProduct extends Product{
         this.type = type;
     }
 
-
+    @Override
+    public String toString() {
+        return this.getName() + " " + this.getClass().getSimpleName() + " - " + this.getPrice() + "$";
+    }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Top extends Clothing {
+    private static final Top top = new Top("Tops");
     private List<String> topTypes = new ArrayList<>();
 
     public Top(String name, List<Product> products, List<String> topTypes) {
@@ -22,6 +23,10 @@ public class Top extends Clothing {
     }
 
     public Top() {
+    }
+
+    public static Top getTop() {
+        return top;
     }
 
     public List<String> getTopTypes() {

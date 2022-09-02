@@ -9,9 +9,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import static com.solvd.onlineShop.utils.ShopUtils.randomHumanName;
+
 public class Customer extends Human {
 
     private final static Logger LOGGER = LogManager.getLogger(Customer.class);
+    public static final Customer customer = new Customer(randomHumanName());
+
 
 
     public Customer(String name, boolean isEmployee, List<String> sizes, int frequentShopperPoints) {
@@ -19,7 +23,7 @@ public class Customer extends Human {
     }
 
     public Customer(String name, boolean isEmployee, List<String> sizes) {
-        super(name, true);
+        super(name, false);
     }
 
     public Customer(String name) {

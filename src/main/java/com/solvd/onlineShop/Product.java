@@ -64,10 +64,6 @@ public abstract class Product {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return this.name + " - " + this.price + "$";
-    }
 
     public Returnable<Product> returnItem = ((Product product) -> {
         if (product.getCategory().getName().equals("Tops") || product.getCategory().getName().equals("Bottoms") || product.getCategory().getName().equals("HeadWear")) {

@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 public class Cart implements Inventory {
-
+    public static Cart cart = new Cart();
     private final static Logger LOGGER = LogManager.getLogger(Cart.class);
     private HashMap<String, Double> cartProducts = new HashMap<String, Double>();
     private double totalPrice;
@@ -66,7 +66,7 @@ public class Cart implements Inventory {
         return productsPurchased;
     }
 
-    public void addWishListToCart2(List<ClothingProduct> wishlist) {
+    public void addWishListToCart(List<Product> wishlist) {
         List<String> addedToHashCart = new ArrayList<>();
         wishlist.forEach(product -> {
             if (product.checkProduct(product)) {
@@ -90,20 +90,23 @@ public class Cart implements Inventory {
         LOGGER.info("Valid Cart.");
     }
 
-    public void checkWishList(List<ClothingProduct> wishList) {
+    public void checkWishList(List<Product> wishList) {
         if (wishList.isEmpty()) {
             throw new WishListException("Invalid Wishlist. Wishlist is empty.");
         }
         LOGGER.info("Valid Wishlist.");
     }
 
-
+    //TODO: applying coupon as percent or cash not working correctly need to fix
     public void applyCoupon(Coupon coupon) {
+        LOGGER.info("inside");
         if (coupon.isPercent()) {
+            LOGGER.info("inside2");
             double discount = totalPrice * coupon.getCouponAmount();
             totalPrice -= discount;
-            LOGGER.info("Coupon: " + (coupon.getCouponAmount() * 100) + "% off price | Coupon discount amount: " + discount + "$");
+            LOGGER.info("Coupon: " + (coupon.getCouponAmount() * 100) + "% off price | Coupon discount amount: " + discount + "%$");
         } else {
+            LOGGER.info("inside3");
             totalPrice -= coupon.getCouponAmount();
             LOGGER.info("Coupon discount amount: " + coupon.getCouponAmount() + "$");
         }

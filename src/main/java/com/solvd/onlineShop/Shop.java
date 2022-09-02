@@ -6,14 +6,16 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-import static com.solvd.onlineShop.Clothing.clothing;
+import static com.solvd.onlineShop.bottom.Bottom.getBottom;
+import static com.solvd.onlineShop.headWear.HeadWear.getHeadWear;
+import static com.solvd.onlineShop.top.Top.getTop;
 
 public class Shop {
 
     private final static Logger LOGGER = LogManager.getLogger(Shop.class);
 
-    public static Shop shop = new Shop("Online Shop");
-    public static List<Clothing> shopCategories = new ArrayList<>(Arrays.asList(clothing));
+    private static Shop shop = new Shop("Online Shop");
+    private static List<Clothing> clothingCategories = new ArrayList<>(Arrays.asList(getTop(), getBottom(), getHeadWear()));
     private String name;
     private Set<Category> categories = new HashSet<Category>();
     private int inventory = 100;
@@ -25,6 +27,22 @@ public class Shop {
 
     public Shop() {
 
+    }
+
+    public static List<Clothing> getClothingCategories() {
+        return clothingCategories;
+    }
+
+    public static void setClothingCategories(List<Clothing> clothingCategories) {
+        Shop.clothingCategories = clothingCategories;
+    }
+
+    public static Shop getShop() {
+        return shop;
+    }
+
+    public static void setShop(Shop shop) {
+        Shop.shop = shop;
     }
 
     public String getName() {

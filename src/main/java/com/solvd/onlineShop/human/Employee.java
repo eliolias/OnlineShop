@@ -9,10 +9,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+import static com.solvd.onlineShop.utils.ShopUtils.randomHumanName;
+
 public class Employee extends Human {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
-
+    public static final Employee employee = new Employee(randomHumanName());
     private double ratePerItem;
     private double totalPay;
 

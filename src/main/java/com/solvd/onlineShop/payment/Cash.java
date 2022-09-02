@@ -5,7 +5,10 @@ import com.solvd.onlineShop.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.solvd.onlineShop.utils.ShopUtils.getRandomNumber;
+
 public class Cash extends Payment {
+    public static final Cash cash = new Cash(getRandomNumber(500, 2000), "Cash");
 
     double reduction = 0.05;
     private final static Logger LOGGER = LogManager.getLogger(Main.class);

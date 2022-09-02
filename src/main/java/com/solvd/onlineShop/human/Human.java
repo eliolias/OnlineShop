@@ -1,11 +1,7 @@
 package com.solvd.onlineShop.human;
 
-import com.solvd.onlineShop.Cart;
 import com.solvd.onlineShop.ClothingProduct;
 import com.solvd.onlineShop.Product;
-import com.solvd.onlineShop.interfaces.IPay;
-import com.solvd.onlineShop.payment.Cash;
-import com.solvd.onlineShop.payment.Payment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +10,7 @@ import java.util.*;
 public abstract class Human{
     private final static Logger LOGGER = LogManager.getLogger(Customer.class);
 
-    private List<ClothingProduct> wishList;
+    private List<Product> wishList;
 
     private String name;
     private boolean isEmployee;
@@ -58,11 +54,11 @@ public abstract class Human{
         isEmployee = employee;
     }
 
-    public List<ClothingProduct> getWishList() {
+    public List<Product> getWishList() {
         return wishList;
     }
 
-    public void setWishList(List<ClothingProduct> wishList) {
+    public void setWishList(List<Product> wishList) {
         this.wishList = wishList;
     }
 

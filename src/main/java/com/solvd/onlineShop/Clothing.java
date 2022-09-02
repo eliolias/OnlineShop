@@ -5,9 +5,8 @@ import com.solvd.onlineShop.enums.Seasons;
 import java.util.*;
 
 public class Clothing extends Category {
-    public static Clothing clothing = new Clothing("Clothing", Seasons.SUMMER);
+    private static Clothing clothing = new Clothing("Clothing", Seasons.SUMMER);
     private Seasons currentSeason;
-
     private List<Clothing> clothingCategories;
 
 
@@ -32,6 +31,14 @@ public class Clothing extends Category {
 
     public Clothing() {
 
+    }
+
+    public static Clothing getClothing() {
+        return clothing;
+    }
+
+    public static void setClothing(Clothing clothing) {
+        Clothing.clothing = clothing;
     }
 
     public Seasons getCurrentSeason() {

@@ -1,8 +1,11 @@
 package com.solvd.onlineShop.payment;
 
 import com.solvd.onlineShop.enums.EnumCoupon;
+import static com.solvd.onlineShop.utils.ShopUtils.randomCoupon;
 
 public class Coupon extends Payment {
+
+    public static Coupon coupon = new Coupon(randomCoupon(), "Coupon", true);
     private boolean isPercent;
     private EnumCoupon couponAmount;
     public Coupon(EnumCoupon couponAmount, String type, boolean isPercent) {
@@ -25,5 +28,13 @@ public class Coupon extends Payment {
 
     public void setCouponAmount(EnumCoupon couponAmount) {
         this.couponAmount = couponAmount;
+    }
+
+    public void setDiscountType(Coupon coupon){
+        if (coupon.getAmount() > 1){
+            coupon.setPercent(false);
+        } else if (coupon.getAmount() < 1) {
+            coupon.setPercent(true);
+        }
     }
 }

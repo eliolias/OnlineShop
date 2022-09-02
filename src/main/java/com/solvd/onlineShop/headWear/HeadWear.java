@@ -6,7 +6,7 @@ import com.solvd.onlineShop.Product;
 import java.util.*;
 
 public class HeadWear extends Clothing {
-
+    private static final HeadWear headWear = new HeadWear("HeadWear");
     private List<String> headWearTypes = new ArrayList<>();
 
     public HeadWear(String name, List<Product> products, List<String> headWearTypes) {
@@ -24,6 +24,10 @@ public class HeadWear extends Clothing {
     }
 
     public HeadWear() {
+    }
+
+    public static HeadWear getHeadWear() {
+        return headWear;
     }
 
     public List<String> getHeadWearTypes() {

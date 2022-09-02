@@ -1,60 +1,51 @@
 package com.solvd.onlineShop;
 
-import static com.solvd.onlineShop.Clothing.clothing;
-import static com.solvd.onlineShop.Shop.shop;
-import static com.solvd.onlineShop.Shop.shopCategories;
+import static com.solvd.onlineShop.Cart.cart;
+import static com.solvd.onlineShop.Clothing.getClothing;
+import static com.solvd.onlineShop.Shop.*;
+import static com.solvd.onlineShop.human.Employee.employee;
+import static com.solvd.onlineShop.payment.Cash.cash;
+import static com.solvd.onlineShop.payment.Coupon.coupon;
 import static com.solvd.onlineShop.utils.ShopUtils.*;
-
-import com.solvd.onlineShop.threads.BottomRunnable;
-import com.solvd.onlineShop.threads.HeadWearRunnable;
-import com.solvd.onlineShop.threads.TopRunnable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 public class Main {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
-        TopRunnable runnable1 = new TopRunnable();
-        BottomRunnable runnable2 = new BottomRunnable();
-        HeadWearRunnable runnable3 = new HeadWearRunnable();
-        Thread thread1 = new Thread(runnable1);
-        Thread thread2 = new Thread(runnable2);
-        Thread thread3 = new Thread(runnable3);
-        thread1.start();
-        thread2.start();
-        thread3.start();
 
-        bobCart.checkWishList(customerWishList);
-        bob.setWishList(customerWishList);
-        shop.checkCategories(shopCategories);
-        clothing.checkCategories(clothingCategories);
-        clothing.setClothingCategories(clothingCategories);
-        clothing.setProducts(allProducts);
-        shop.addCategory(clothing);
+        generateAllProducts();
+        generateOrder();
 
-        LOGGER.info("Welcome to " + shop.getName());
-        LOGGER.info("Available product categories: " + shop.getCategories());
-        LOGGER.info("Available clothing product categories: " + clothing.getClothingCategories());
-        LOGGER.info("Products available in " + clothing.getName() + " category :" + clothing.getProducts());
-        LOGGER.info(bob.getName() + "'s wishlist: " + bob.getWishList());
-        bobCart.addWishListToCart2(bob.getWishList());
-        bobCart.aggregateTotalPrice();
-        LOGGER.info("Cart total Price: " + bobCart.getTotalPrice() + "$");
-        bobCart.applyEmployeeDiscount(bob.isEmployee());
-        bobCart.checkCart(bobCart.getCartProducts());
-        bobCart.checkCoupon(bobCoupon);
-        bobCart.applyCoupon(bobCoupon);
+        getClothing().setClothingCategories(getClothingCategories());
+        getClothing().checkCategories(getClothing().getClothingCategories());
+        getShop().addCategory(getClothing());
+
+        cart.checkWishList(getGeneratedWishList());
+        employee.setWishList(getGeneratedWishList());
+        LOGGER.info("Welcome to " + getShop().getName());
+        LOGGER.info("Available product categories: " + getShop().getCategories());
+        LOGGER.info("Available clothing product categories: " + getClothing().getClothingCategories());
+        LOGGER.info("Products available in " + getClothing().getName() + " category :" + getAllProducts());
+        LOGGER.info(employee.getName() + "'s wishlist: " + employee.getWishList());
+        cart.addWishListToCart(employee.getWishList());
+        cart.aggregateTotalPrice();
+        LOGGER.info("Cart total Price: " + cart.getTotalPrice() + "$");
+        cart.applyEmployeeDiscount(employee.isEmployee());
+        cart.checkCart(cart.getCartProducts());
+        cart.checkCoupon(coupon);
+        coupon.setDiscountType(coupon);
+        cart.applyCoupon(coupon);
         LOGGER.info("----------");
-        LOGGER.info("Products in cart: " + bobCart.getCartProducts());
-        LOGGER.info("Cart total Price with discounts: " + bobCart.getTotalPrice() + "$");
+        LOGGER.info("Products in cart: " + cart.getCartProducts());
+        LOGGER.info("Cart total Price with discounts: " + cart.getTotalPrice() + "$");
         LOGGER.info("----------");
-        LOGGER.info(bob.getName() + " purchased : " + bobCart.makePurchaseCart(bobCash) + " for " + bobCart.getTotalPrice() + "$");
-        bob.earnPoints.earnPoints(bobCart);
-        bob.pay.pay(bobCash, bobCart);
+        LOGGER.info(employee.getName() + " purchased : " + cart.makePurchaseCart(cash) + " for " + cart.getTotalPrice() + "$");
+        employee.earnPoints.earnPoints(cart);
+        employee.pay.pay(cash, cart);
 
         //Testing returnable interface
         //customerWishList.forEach(clothingProduct -> clothingProduct.returnItem.returnItem(clothingProduct));
-
-
     }
 }
