@@ -33,7 +33,7 @@ public class Card extends Payment {
         this.fee = fee;
     }
 
-    public void cardFee(Cart cart){
+    public void cardFee(Cart cart) {
         double upCharge = cart.getTotalPrice() * fee;
         cart.setTotalPrice(cart.getTotalPrice() + upCharge);
         LOGGER.info("Purchased with Card | Card upcharge amount: " + upCharge + "$");

@@ -71,7 +71,7 @@ public class Cart implements Inventory {
         wishlist.forEach(product -> {
             if (product.checkProduct(product)) {
                 int sku = product.getSku();
-                if(sku >= 11111 && sku <= 11122){
+                if (sku >= 11111 && sku <= 11122) {
                     this.addToCart(product);
                     addedToHashCart.add(product.getName());
                 }
@@ -83,6 +83,7 @@ public class Cart implements Inventory {
             LOGGER.info("Added items from wishlist to cart: " + addedToHashCart);
         }
     }
+
     public void checkCart(HashMap<String, Double> cartProducts) {
         if (cartProducts == null || cartProducts.isEmpty()) {
             throw new CartException("Invalid cart. Cart is empty.");
@@ -99,14 +100,14 @@ public class Cart implements Inventory {
 
     //TODO: applying coupon as percent or cash not working correctly need to fix
     public void applyCoupon(Coupon coupon) {
-        LOGGER.info("inside");
+        //LOGGER.info("inside");
         if (coupon.isPercent()) {
-            LOGGER.info("inside2");
+            //LOGGER.info("inside2");
             double discount = totalPrice * coupon.getCouponAmount();
             totalPrice -= discount;
             LOGGER.info("Coupon: " + (coupon.getCouponAmount() * 100) + "% off price | Coupon discount amount: " + discount + "%$");
         } else {
-            LOGGER.info("inside3");
+            //LOGGER.info("inside3");
             totalPrice -= coupon.getCouponAmount();
             LOGGER.info("Coupon discount amount: " + coupon.getCouponAmount() + "$");
         }

@@ -52,8 +52,8 @@ public abstract class Product {
         return category;
     }
 
-    public boolean checkProduct(Product product){
-        if(product == null){
+    public boolean checkProduct(Product product) {
+        if (product == null) {
             throw new ProductsException("Invalid Product");
         } else {
             return true;

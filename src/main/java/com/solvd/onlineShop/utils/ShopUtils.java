@@ -9,9 +9,6 @@ import com.solvd.onlineShop.enums.Sizes;
 import com.solvd.onlineShop.headWear.Hat;
 
 import com.solvd.onlineShop.headWear.Sunglasses;
-import com.solvd.onlineShop.human.Employee;
-import com.solvd.onlineShop.payment.Cash;
-import com.solvd.onlineShop.payment.Coupon;
 import com.solvd.onlineShop.threads.BottomRunnable;
 import com.solvd.onlineShop.threads.HeadWearRunnable;
 import com.solvd.onlineShop.threads.OrderRunnable;
@@ -20,18 +17,17 @@ import com.solvd.onlineShop.top.SweatShirt;
 import com.solvd.onlineShop.top.Shirt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.Order;
 
 import static com.solvd.onlineShop.bottom.Bottom.getBottom;
 import static com.solvd.onlineShop.headWear.HeadWear.getHeadWear;
 import static com.solvd.onlineShop.top.Top.getTop;
 
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
 public class ShopUtils {
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
@@ -46,34 +42,43 @@ public class ShopUtils {
     private static final List<String> humanNames = new ArrayList<>(Arrays.asList("Bob", "Brenda", "Barry", "Billy", "Bobbert"));
     private static List<Product> allProducts = new ArrayList<>();
     private static List<Product> generatedWishList = new ArrayList<>();
+
     public ShopUtils() {
-    };
+    }
+
+    ;
 
     public List<String> getColors() {
         return colors;
-    };
+    }
+
+    ;
 
     public List<String> getShirtTypes() {
         return ShirtTypes;
-    };
+    }
+
+    ;
 
     public List<String> gettSweatshirtTypes() {
         return sweatshirtTypes;
-    };
+    }
 
-    public List<String> getShortsTypes(){
+    ;
+
+    public List<String> getShortsTypes() {
         return shortsTypes;
     }
 
-    public List<String> getPantsTypes(){
+    public List<String> getPantsTypes() {
         return pantsTypes;
     }
 
-    public List<String> getHatTypes(){
+    public List<String> getHatTypes() {
         return hatTypes;
     }
 
-    public List<String> getSunglassesTypes(){
+    public List<String> getSunglassesTypes() {
         return sunglassesTypes;
     }
 
@@ -93,51 +98,65 @@ public class ShopUtils {
         ShopUtils.generatedWishList = generatedWishList;
     }
 
-    public static List<String> getHumanNames(){return humanNames;};
+    public static List<String> getHumanNames() {
+        return humanNames;
+    }
+
+    ;
 
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
-    };
+    }
+
+    ;
 
     public static String randomColor() {
         return colors.get(getRandomNumber(0, colors.size()));
-    };
+    }
 
-    public static String randomHumanName(){return humanNames.get(getRandomNumber(0, humanNames.size()));}
+    ;
 
-    public static String randomProductName(String productType){
+    public static String randomHumanName() {
+        return humanNames.get(getRandomNumber(0, humanNames.size()));
+    }
+
+    public static String randomProductName(String productType) {
         return randomColor() + " " + productType;
     }
 
-    public static String randomProductType(List<String> products){
+    public static String randomProductType(List<String> products) {
         return products.get(getRandomNumber(0, products.size()));
     }
 
     public static int randomSKU() {
         return getRandomNumber(11111, 11122);
-    };
+    }
+
+    ;
 
     public static double randomPrice() {
         double price = getRandomNumber(10, 50);
         return price + 0.99;
-    };
+    }
+
+    ;
 
     public static Sizes randomSize() {
         return Sizes.values()[new Random().nextInt(Sizes.values().length)];
-    };
-
-    public static EnumCoupon randomCoupon(){
-        return EnumCoupon.values()[new Random().nextInt(EnumCoupon.values().length)];
     }
 
+    ;
 
+    public static EnumCoupon randomCoupon() {
+        return EnumCoupon.values()[new Random().nextInt(EnumCoupon.values().length)];
+    }
 
     public static boolean randomBoolean() {
         Random random = new Random();
         return random.nextBoolean();
     }
 
-    public static List<ClothingProduct> generateTops(int amount) {
+    public static synchronized List<ClothingProduct> generateTops(int amount) {
         List<ClothingProduct> tops = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             if (randomBoolean()) {
@@ -151,24 +170,26 @@ public class ShopUtils {
         return tops;
     }
 
-    public static List<ClothingProduct> generateBottoms(int amount){
+    public static synchronized List<ClothingProduct> generateBottoms(int amount) {
         List<ClothingProduct> bottoms = new ArrayList<>();
-        for(int i = 0; i < amount; i++){
-            if(randomBoolean()){
+        for (int i = 0; i < amount; i++) {
+            if (randomBoolean()) {
                 Shorts shorts = new Shorts(randomProductName(randomProductType(shortsTypes)), randomSKU(), randomPrice(), getBottom(), randomSize(), randomColor(), randomProductType(shortsTypes), randomBoolean());
-                if (shorts.getType() == "Swimming"){
+                if (shorts.getType() == "Swimming") {
                     shorts.setForSwimming(true);
                 }
                 bottoms.add(shorts);
-            } else{
+            } else {
                 Pants pants = new Pants(randomProductName(randomProductType(pantsTypes)), randomSKU(), randomPrice(), getBottom(), randomSize(), randomColor(), randomProductType(pantsTypes), randomBoolean());
                 bottoms.add(pants);
             }
         }
         return bottoms;
-    };
+    }
 
-    public static List<ClothingProduct> generateHeadWear(int amount){
+    ;
+
+    public static synchronized List<ClothingProduct> generateHeadWear(int amount) {
         List<ClothingProduct> headWear = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             if (randomBoolean()) {
@@ -182,25 +203,16 @@ public class ShopUtils {
         return headWear;
     }
 
-    public static List<Product> generateAllProducts(){
-        HeadWearRunnable runnable = new HeadWearRunnable();
-        BottomRunnable runnable2 = new BottomRunnable();
-        TopRunnable runnable3 = new TopRunnable();
-        Thread thread1 = new Thread(runnable);
-        Thread thread2 = new Thread(runnable2);
-        Thread thread3 = new Thread(runnable3);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-
+    public static synchronized List<Product> generateShop() {
+        TopRunnable topRunnable = new TopRunnable();
+        BottomRunnable bottomRunnable = new BottomRunnable();
+        HeadWearRunnable headWearRunnable = new HeadWearRunnable();
+        OrderRunnable orderRunnable = new OrderRunnable();
+        CompletableFuture.runAsync(topRunnable);
+        CompletableFuture.runAsync(bottomRunnable);
+        CompletableFuture.runAsync(headWearRunnable);
+        CompletableFuture.runAsync(orderRunnable);
         return allProducts;
     }
-    public static List<Product> generateOrder(){
-        OrderRunnable runnable4 = new OrderRunnable();
-        Thread thread4 = new Thread(runnable4);
-        thread4.start();
-        return generatedWishList;
-    }
-
 }
 

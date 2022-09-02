@@ -17,7 +17,6 @@ public class Customer extends Human {
     public static final Customer customer = new Customer(randomHumanName());
 
 
-
     public Customer(String name, boolean isEmployee, List<String> sizes, int frequentShopperPoints) {
         super(name, true, frequentShopperPoints);
     }
@@ -37,7 +36,7 @@ public class Customer extends Human {
     public Rewardable<Cart> earnPoints = ((Cart cart) -> {
         int pointsToAdd = 0;
         pointsToAdd += cart.getCartProducts().size();
-        LOGGER.info("Shopper reward points received: " + this.getShopperPoints()  + " points");
+        LOGGER.info("Shopper reward points received: " + this.getShopperPoints() + " points");
         return this.getShopperPoints();
     });
 

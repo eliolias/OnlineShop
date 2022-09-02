@@ -7,10 +7,9 @@ import java.util.List;
 
 import static com.solvd.onlineShop.utils.ShopUtils.*;
 
-public class HeadWearRunnable  implements Runnable{
+public class HeadWearRunnable implements Runnable {
     @Override
-    public void run(){
-        //getHeadWear().setHeadWearTypes(headWearCategories);
+    public void run() {
         List<ClothingProduct> headWearProducts = new ArrayList<>(generateHeadWear(6));
         getAllProducts().addAll(headWearProducts);
 

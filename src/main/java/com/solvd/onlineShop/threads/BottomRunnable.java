@@ -9,8 +9,7 @@ import static com.solvd.onlineShop.utils.ShopUtils.*;
 
 public class BottomRunnable implements Runnable {
     @Override
-    public void run(){
-        //getBottom().setBottomTypes(bottomCategories);
+    public void run() {
         List<ClothingProduct> bottomProducts = new ArrayList<>(generateBottoms(6));
         getAllProducts().addAll(bottomProducts);
 

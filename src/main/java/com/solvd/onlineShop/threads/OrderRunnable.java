@@ -8,9 +8,9 @@ import java.util.List;
 
 import static com.solvd.onlineShop.utils.ShopUtils.*;
 
-public class OrderRunnable  implements Runnable{
+public class OrderRunnable implements Runnable {
     @Override
-    public void run(){
+    public void run() {
         List<ClothingProduct> topProducts = new ArrayList<>(generateTops(2));
         List<ClothingProduct> bottomProducts = new ArrayList<>(generateBottoms(2));
         List<ClothingProduct> headWearProducts = new ArrayList<>(generateHeadWear(2));

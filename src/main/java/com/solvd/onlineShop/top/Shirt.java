@@ -30,7 +30,7 @@ public class Shirt extends ClothingProduct implements SeasonDiscountable {
 
     @Override
     public void inSeasonDiscount() {
-        if(this.getCategory().getCurrentSeason() == season){
+        if (this.getCategory().getCurrentSeason() == season) {
             this.setPrice(this.getPrice() - discount);
             LOGGER.info("In season discount for summer of 10$");
         }

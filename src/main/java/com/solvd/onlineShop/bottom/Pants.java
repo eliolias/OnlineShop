@@ -11,7 +11,7 @@ public class Pants extends ClothingProduct {
 
     public Pants(String name, int sku, double price, Category category, Sizes size, String color, String type, boolean beltRecommended) {
         super(name, sku, price, category, size, color, type);
-              this.beltRecommended = beltRecommended;
+        this.beltRecommended = beltRecommended;
 
     }
 

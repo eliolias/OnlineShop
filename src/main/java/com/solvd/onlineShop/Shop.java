@@ -86,10 +86,23 @@ public class Shop {
     }
 
     public void checkCategories(List<Clothing> categories) throws CategoriesException {
-        if(categories.isEmpty()){
+        if (categories.isEmpty()) {
             throw new CategoriesException("Empty list of categories. Invalid");
         }
         LOGGER.info("Valid list of categories");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shop shop = (Shop) o;
+        return categories.equals(shop.categories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categories);
     }
 }
 

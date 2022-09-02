@@ -29,9 +29,10 @@ public class Shorts extends ClothingProduct implements SeasonDiscountable {
     public void setForSwimming(boolean forSwimming) {
         this.forSwimming = forSwimming;
     }
+
     @Override
     public void inSeasonDiscount() {
-        if(this.getCategory().getCurrentSeason().equals(Seasons.SUMMER)){
+        if (this.getCategory().getCurrentSeason().equals(Seasons.SUMMER)) {
             this.setPrice(this.getPrice() - discount);
             LOGGER.info("In season discount for summer of 10$");
         }

@@ -7,17 +7,17 @@ import static com.solvd.onlineShop.human.Employee.employee;
 import static com.solvd.onlineShop.payment.Cash.cash;
 import static com.solvd.onlineShop.payment.Coupon.coupon;
 import static com.solvd.onlineShop.utils.ShopUtils.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        generateAllProducts();
-        generateOrder();
-
+        generateShop();
         getClothing().setClothingCategories(getClothingCategories());
         getClothing().checkCategories(getClothing().getClothingCategories());
         getShop().addCategory(getClothing());
@@ -45,7 +45,6 @@ public class Main {
         employee.earnPoints.earnPoints(cart);
         employee.pay.pay(cash, cart);
 
-        //Testing returnable interface
-        //customerWishList.forEach(clothingProduct -> clothingProduct.returnItem.returnItem(clothingProduct));
+        getGeneratedWishList().forEach(clothingProduct -> clothingProduct.returnItem.returnItem(clothingProduct));
     }
 }

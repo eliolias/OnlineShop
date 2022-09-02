@@ -19,6 +19,7 @@ public abstract class Payment {
     public Payment(String type) {
         this.type = type;
     }
+
     public Payment() {
 
     }

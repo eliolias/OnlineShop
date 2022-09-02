@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public abstract class Human{
+public abstract class Human {
     private final static Logger LOGGER = LogManager.getLogger(Customer.class);
 
     private List<Product> wishList;

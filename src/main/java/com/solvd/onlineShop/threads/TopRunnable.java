@@ -8,11 +8,10 @@ import java.util.List;
 import static com.solvd.onlineShop.top.Top.getTop;
 import static com.solvd.onlineShop.utils.ShopUtils.*;
 
-public class TopRunnable implements Runnable{
+public class TopRunnable implements Runnable {
 
     @Override
-    public void run(){
-        //getTop().setTopTypes(topCategories);
+    public void run() {
         List<ClothingProduct> topProducts = new ArrayList<>(generateTops(6));
         getAllProducts().addAll(topProducts);
 

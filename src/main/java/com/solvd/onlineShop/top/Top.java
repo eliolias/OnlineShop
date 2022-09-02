@@ -14,6 +14,7 @@ public class Top extends Clothing {
         super(name, products);
         this.topTypes = topTypes;
     }
+
     public Top(String name, List<Product> products) {
         super(name, products);
     }
